@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ReactNode, SVGProps } from "react";
+import HostawayCalendarWidget from "./components/HostawayCalendarWidget";
 
 function getIcon(name: string): ReactNode {
   const baseProps: SVGProps<SVGSVGElement> = {
@@ -85,9 +86,7 @@ function Amenity(props: { icon: string; title: string; text: string }) {
 
 export default function Page() {
   const AIRBNB_URL = "https://www.airbnb.com/";
-  const BOOKING_WIDGET_EMBED_URL = "";
 
-  // Use your clean background (no embedded logo)
   const heroBg = "/assets/roamstead_mountain_bg.png";
   const wordmark = "/assets/roamstead_logo_wordmark_transparent.png";
 
@@ -122,12 +121,7 @@ export default function Page() {
             <a className="button" href="#book">
               Book your stay
             </a>
-            <a
-              className="button linkButton"
-              href={AIRBNB_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="button linkButton" href={AIRBNB_URL} target="_blank" rel="noreferrer">
               View on Airbnb
             </a>
           </div>
@@ -143,36 +137,12 @@ export default function Page() {
           </p>
 
           <div className="amenitiesGrid">
-            <Amenity
-              icon="mountain"
-              title="Adventure Access"
-              text="Four-season surroundings built for exploring."
-            />
-            <Amenity
-              icon="wifi"
-              title="Remote-Work Ready"
-              text="Fast Wi-Fi and comfortable work-friendly space."
-            />
-            <Amenity
-              icon="home"
-              title="Modern Comfort"
-              text="A clean, intentional stay focused on experience."
-            />
-            <Amenity
-              icon="users"
-              title="Community Spaces"
-              text="Room to gather — and room to unplug."
-            />
-            <Amenity
-              icon="coffee"
-              title="Hospitality Touches"
-              text="Simple comforts that make it feel effortless."
-            />
-            <Amenity
-              icon="calendar"
-              title="Flexible Stays"
-              text="Great for quick trips, workations, and longer stays."
-            />
+            <Amenity icon="mountain" title="Adventure Access" text="Four-season surroundings built for exploring." />
+            <Amenity icon="wifi" title="Remote-Work Ready" text="Fast Wi-Fi and comfortable work-friendly space." />
+            <Amenity icon="home" title="Modern Comfort" text="A clean, intentional stay focused on experience." />
+            <Amenity icon="users" title="Community Spaces" text="Room to gather — and room to unplug." />
+            <Amenity icon="coffee" title="Hospitality Touches" text="Simple comforts that make it feel effortless." />
+            <Amenity icon="calendar" title="Flexible Stays" text="Great for quick trips, workations, and longer stays." />
           </div>
         </div>
       </section>
@@ -181,40 +151,12 @@ export default function Page() {
       <section id="book" className="section" aria-label="Booking">
         <div className="container">
           <h2 className="sectionTitle">Book your stay</h2>
-          <p className="sectionCopy">
-            We can embed a booking widget (Lodgify, Hostaway, OwnerRez, etc.). Later we can
-            sync availability and link to Airbnb.
-          </p>
+          <p className="sectionCopy">Select your dates and book directly.</p>
 
           <div className="card">
             <div className="bookingGrid">
-              <div>
-                {BOOKING_WIDGET_EMBED_URL ? (
-                  <iframe
-                    title="Roamstead booking widget"
-                    src={BOOKING_WIDGET_EMBED_URL}
-                    style={{ width: "100%", height: 520, border: 0 }}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="widgetShell">
-                    <div>
-                      <div
-                        style={{
-                          fontWeight: 700,
-                          color: "rgba(255,255,255,0.82)",
-                          marginBottom: 8,
-                        }}
-                      >
-                        Booking widget placeholder
-                      </div>
-                      <div className="small">
-                        Paste your provider embed URL into{" "}
-                        <code>BOOKING_WIDGET_EMBED_URL</code>.
-                      </div>
-                    </div>
-                  </div>
-                )}
+              <div className="widgetMount">
+                <HostawayCalendarWidget listingId={40467} />
               </div>
 
               <div>
@@ -244,11 +186,7 @@ export default function Page() {
                   href={AIRBNB_URL}
                   target="_blank"
                   rel="noreferrer"
-                  style={{
-                    width: "100%",
-                    display: "inline-flex",
-                    justifyContent: "center",
-                  }}
+                  style={{ width: "100%", display: "inline-flex", justifyContent: "center" }}
                 >
                   Book via Airbnb
                 </a>
@@ -258,9 +196,7 @@ export default function Page() {
         </div>
       </section>
 
-      <footer className="footer">
-        © {new Date().getFullYear()} Roamstead. All rights reserved.
-      </footer>
+      <footer className="footer">© {new Date().getFullYear()} Roamstead. All rights reserved.</footer>
     </main>
   );
 }
