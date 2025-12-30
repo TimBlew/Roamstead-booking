@@ -159,7 +159,7 @@ export default function Page() {
                 <HostawayCalendarWidget listingId={455632} />
               </div>
 
-              <div>
+              <div className="bookingAside">
                 <a
                   className="button"
                   href={AIRBNB_URL}
