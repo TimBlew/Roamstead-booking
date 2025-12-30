@@ -160,27 +160,6 @@ export default function Page() {
               </div>
 
               <div>
-                <ul className="list">
-                  <li className="pill">
-                    <strong>Check-in</strong>
-                    <span>3:00 PM</span>
-                  </li>
-                  <li className="pill">
-                    <strong>Check-out</strong>
-                    <span>11:00 AM</span>
-                  </li>
-                  <li className="pill">
-                    <strong>Location</strong>
-                    <span>Mountain town</span>
-                  </li>
-                  <li className="pill">
-                    <strong>Questions?</strong>
-                    <span>hello@roamstead.com</span>
-                  </li>
-                </ul>
-
-                <div style={{ height: 14 }} />
-
                 <a
                   className="button"
                   href={AIRBNB_URL}
