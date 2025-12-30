@@ -16,29 +16,28 @@ export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWi
   useEffect(() => {
     const SCRIPT_SRC = "https://d2q3n06xhbi0am.cloudfront.net/calendar.js";
 
+    // ✅ IMPORTANT: this must be Hostaway’s booking engine domain (not your site)
+    const HOSTAWAY_BASE_URL = "https://roamstead_ventures.holidayfuture.com/";
+
     function init(attempt = 0) {
       if (typeof window === "undefined") return;
 
-      // If the function isn't ready yet, retry a few times (covers edge cases)
       if (typeof window.hostawayCalendarWidget !== "function") {
-        if (attempt < 10) {
-          window.setTimeout(() => init(attempt + 1), 100);
-        }
+        if (attempt < 20) window.setTimeout(() => init(attempt + 1), 100);
         return;
       }
 
       window.hostawayCalendarWidget({
-        baseUrl: `${window.location.origin}/`,
+        baseUrl: HOSTAWAY_BASE_URL,
         listingId,
         numberOfMonths: 2,
-        openInNewTab: true, // ✅ per your decision
+        openInNewTab: true,
         rounded: true,
         button: {
           action: "checkout",
           text: "Book now",
         },
         clearButtonText: "Clear dates",
-        // ✅ Hostaway default styling: no "color" overrides
       });
     }
 
