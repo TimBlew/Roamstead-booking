@@ -85,6 +85,7 @@ function Amenity(props: { icon: string; title: string; text: string }) {
 }
 
 export default function Page() {
+  // Replace this with the actual Airbnb listing URL when ready
   const AIRBNB_URL = "https://www.airbnb.com/";
 
   const heroBg = "/assets/roamstead_mountain_bg.png";
@@ -179,3 +180,4 @@ export default function Page() {
     </main>
   );
 }
+
