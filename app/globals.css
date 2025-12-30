@@ -166,44 +166,37 @@ img{ max-width: 100%; height: auto; display: block; }
 
 .bookingGrid{
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr 320px;
   gap: 18px;
   padding: 18px;
 }
 
+/* ✅ Hostaway widget needs more vertical room on mobile so the bottom buttons aren't clipped */
 .widgetMount{
   width: 100%;
-  min-height: 520px; /* adjust if needed after you see it */
+  height: 620px;
+  min-height: 620px;
   border-radius: 14px;
   overflow: hidden;
+  padding: 8px; /* breathing room around widget */
 }
 
+/* Hostaway widget is not an iframe (safe to remove). Keeping commented in case you swap widgets later. */
+/*
 .widgetMount iframe{
   width: 100%;
   min-height: 520px;
   border: 0;
   display: block;
 }
+*/
 
-.list{
-  display: grid;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.pill{
+/* keeps the Airbnb button aligned nicely in the right column */
+.bookingAside{
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 12px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.25);
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 13px;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
-.pill strong{ color: rgba(255,255,255,0.88); font-weight: 600; }
 
 .footer{
   padding: 30px 0 44px;
@@ -216,4 +209,17 @@ img{ max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 920px){
   .bookingGrid{ grid-template-columns: 1fr; }
+  .bookingAside{ justify-content: center; }
+  .widgetMount{
+    height: 720px;
+    min-height: 720px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 380px){
+  .widgetMount{
+    height: 780px;
+    min-height: 780px;
+  }
 }
