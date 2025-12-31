@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ReactNode, SVGProps } from "react";
-import HostawayCalendarWidget from "./components/HostawayCalendarWidget";
+import BookingSection from "./components/BookingSection";
 
 function getIcon(name: string): ReactNode {
   const baseProps: SVGProps<SVGSVGElement> = {
@@ -21,7 +21,6 @@ function getIcon(name: string): ReactNode {
           <path d="M9.5 14L12 10l2.5 4" />
         </svg>
       );
-
     case "wifi":
       return (
         <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
@@ -30,7 +29,6 @@ function getIcon(name: string): ReactNode {
           <circle cx="12" cy="19" r="0.8" fill="currentColor" stroke="none" />
         </svg>
       );
-
     case "home":
       return (
         <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
@@ -38,7 +36,6 @@ function getIcon(name: string): ReactNode {
           <path d="M9 22V12h6v10" />
         </svg>
       );
-
     case "users":
       return (
         <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
@@ -48,7 +45,6 @@ function getIcon(name: string): ReactNode {
           <path d="M22 20c0-3-4-5-7-5" />
         </svg>
       );
-
     case "coffee":
       return (
         <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
@@ -56,7 +52,6 @@ function getIcon(name: string): ReactNode {
           <path d="M16 10h3a2 2 0 0 1 0 4h-3" />
         </svg>
       );
-
     case "calendar":
       return (
         <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
@@ -64,7 +59,6 @@ function getIcon(name: string): ReactNode {
           <path d="M16 2v4M8 2v4M3 10h18" />
         </svg>
       );
-
     default:
       return null;
   }
@@ -85,9 +79,7 @@ function Amenity(props: { icon: string; title: string; text: string }) {
 }
 
 export default function Page() {
-  // Replace this with the actual Airbnb listing URL when ready
   const AIRBNB_URL = "https://www.airbnb.com/";
-
   const heroBg = "/assets/roamstead_mountain_bg.png";
   const wordmark = "/assets/roamstead_logo_wordmark_transparent.png";
 
@@ -104,14 +96,7 @@ export default function Page() {
         <div className="heroOverlay" />
 
         <div className="container heroContent">
-          <Image
-            className="wordmark"
-            src={wordmark}
-            alt="Roamstead"
-            width={900}
-            height={220}
-            priority
-          />
+          <Image className="wordmark" src={wordmark} alt="Roamstead" width={900} height={220} priority />
 
           <h1 className="headline">Providing more space to roam</h1>
           <p className="subhead">
@@ -133,9 +118,7 @@ export default function Page() {
       <section className="section" aria-label="Amenities">
         <div className="container">
           <h2 className="sectionTitle">Designed for how people travel today</h2>
-          <p className="sectionCopy">
-            Built for adventure, community, and flexibility — without the “luxury-only” vibe.
-          </p>
+          <p className="sectionCopy">Built for adventure, community, and flexibility — without the “luxury-only” vibe.</p>
 
           <div className="amenitiesGrid">
             <Amenity icon="mountain" title="Adventure Access" text="Four-season surroundings built for exploring." />
@@ -152,27 +135,10 @@ export default function Page() {
       <section id="book" className="section" aria-label="Booking">
         <div className="container">
           <h2 className="sectionTitle">Book your stay</h2>
-          <p className="sectionCopy">Select your dates and book directly.</p>
+          <p className="sectionCopy">Choose a property, select your dates, and book directly.</p>
 
-          <div className="card">
-            <div className="bookingGrid">
-              <div className="widgetMount">
-                <HostawayCalendarWidget listingId={455632} />
-              </div>
-
-              <div className="bookingAside">
-                <a
-                  className="button"
-                  href={AIRBNB_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ width: "100%", display: "inline-flex", justifyContent: "center" }}
-                >
-                  Book via Airbnb
-                </a>
-              </div>
-            </div>
-          </div>
+          {/* ✅ Option A: no props */}
+          <BookingSection />
         </div>
       </section>
 
@@ -180,4 +146,6 @@ export default function Page() {
     </main>
   );
 }
+
+
 

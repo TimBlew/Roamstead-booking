@@ -3,7 +3,6 @@
   --text: rgba(255,255,255,0.92);
   --muted: rgba(255,255,255,0.70);
   --muted2: rgba(255,255,255,0.52);
-  --pill: rgba(0,0,0,0.42);
   --border: rgba(255,255,255,0.12);
   --shadow: 0 18px 60px rgba(0,0,0,0.55);
   --max: 1120px;
@@ -11,6 +10,7 @@
 
 *{ box-sizing: border-box; }
 html, body{ height: 100%; }
+
 body{
   margin: 0;
   background: var(--bg);
@@ -19,6 +19,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 a{ color: inherit; text-decoration: none; }
 img{ max-width: 100%; height: auto; display: block; }
 
@@ -61,7 +62,6 @@ img{ max-width: 100%; height: auto; display: block; }
   padding: 72px 0 40px;
 }
 
-/* ✅ Fix: keep the wordmark from “blowing up” / cropping on mobile */
 .wordmark{
   width: min(560px, 92vw);
   height: auto;
@@ -77,6 +77,7 @@ img{ max-width: 100%; height: auto; display: block; }
   margin: 0 0 16px;
   font-weight: 500;
 }
+
 .subhead{
   max-width: 720px;
   margin: 0 auto 22px;
@@ -95,6 +96,7 @@ img{ max-width: 100%; height: auto; display: block; }
   margin-top: 8px;
 }
 
+/* --- Buttons --- */
 .button{
   border: 1px solid var(--border);
   background: rgba(0,0,0,0.55);
@@ -114,6 +116,7 @@ img{ max-width: 100%; height: auto; display: block; }
   justify-content: center;
   text-align: center;
 }
+
 .button:hover{
   transform: translateY(-1px);
   background: rgba(0,0,0,0.68);
@@ -127,6 +130,7 @@ img{ max-width: 100%; height: auto; display: block; }
   font-weight: 600;
   padding: 11px 12px;
 }
+
 .linkButton:hover{
   background: rgba(255,255,255,0.06);
   border-color: rgba(255,255,255,0.12);
@@ -139,12 +143,14 @@ img{ max-width: 100%; height: auto; display: block; }
   border-top: 1px solid rgba(255,255,255,0.08);
   background: linear-gradient(to bottom, rgba(10,10,10,0.92), rgba(10,10,10,0.98));
 }
+
 .sectionTitle{
   font-size: 26px;
   margin: 0 0 10px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
+
 .sectionCopy{
   margin: 0 0 22px;
   color: var(--muted);
@@ -160,7 +166,7 @@ img{ max-width: 100%; height: auto; display: block; }
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: var(--shadow);
-  overflow: visible; /* ✅ prevents widget/button clipping */
+  overflow: visible;
 }
 
 /* --- Amenities --- */
@@ -169,6 +175,7 @@ img{ max-width: 100%; height: auto; display: block; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
+
 .amenityCard{
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 16px;
@@ -181,6 +188,7 @@ img{ max-width: 100%; height: auto; display: block; }
   align-items: flex-start;
   box-shadow: 0 14px 44px rgba(0,0,0,0.35);
 }
+
 .amenityIcon{
   width: 40px;
   height: 40px;
@@ -191,11 +199,13 @@ img{ max-width: 100%; height: auto; display: block; }
   border: 1px solid rgba(255,255,255,0.10);
   flex: 0 0 auto;
 }
+
 .amenityTitle{
   margin: 0 0 6px;
   font-size: 14px;
   letter-spacing: -0.01em;
 }
+
 .amenityText{
   margin: 0;
   font-size: 13px;
@@ -203,38 +213,57 @@ img{ max-width: 100%; height: auto; display: block; }
   color: var(--muted);
 }
 
-/* --- Booking layout (Option B selector) --- */
+/* --- Booking (Option B) --- */
 .bookingTopBar{
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto; /* left: picker, right: Airbnb button */
+  align-items: center;
   gap: 12px;
-  padding: 16px 18px 0;
+  padding: 16px 18px;
+
+  position: relative;
+  z-index: 50;
+  background: rgba(0,0,0,0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
 }
 
 .bookingPicker{
-  display: grid;
-  gap: 6px;
-  min-width: min(520px, 100%);
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
 }
 
 .pickerLabel{
-  font-size: 12px;
-  color: var(--muted2);
+  display: block;
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
 }
 
 .pickerSelect{
   width: 100%;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(0,0,0,0.35);
-  color: var(--text);
+  height: 44px;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(0,0,0,0.65);
+  color: rgba(255,255,255,0.92);
   border-radius: 12px;
   padding: 10px 12px;
   outline: none;
+  appearance: auto;
+  -webkit-appearance: menulist;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
 }
 
 .pickerSelect:focus{
-  border-color: rgba(255,255,255,0.26);
+  border-color: rgba(255,255,255,0.45);
+}
+
+.pickerSelect option{
+  background: #0b0c0d;
+  color: rgba(255,255,255,0.92);
 }
 
 .bookingHint{
@@ -243,33 +272,21 @@ img{ max-width: 100%; height: auto; display: block; }
   font-size: 12px;
 }
 
-/* Base booking grid (kept for compatibility) */
 .bookingGrid{
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr;
   gap: 18px;
   padding: 18px;
-  align-items: start;
 }
 
-/* Option B: widget only (single column) */
-.bookingGridSingle{
-  grid-template-columns: 1fr;
-  padding-top: 12px;
-}
-
-/*
-  ✅ Fix: Hostaway widget sometimes draws controls near edges.
-  - .widgetMount does NOT clip
-  - we give the injected container padding and rounded corners
-*/
 .widgetMount{
   width: 100%;
   min-height: 560px;
   overflow: visible;
+  position: relative;
+  z-index: 1;
 }
 
-/* Help ensure anything Hostaway injects fills the container */
 #hostaway-calendar-widget{
   width: 100%;
   max-width: 100%;
@@ -277,6 +294,7 @@ img{ max-width: 100%; height: auto; display: block; }
   background: rgba(0,0,0,0.20);
   border-radius: 14px;
 }
+
 #hostaway-calendar-widget iframe{
   width: 100% !important;
   max-width: 100% !important;
@@ -284,15 +302,13 @@ img{ max-width: 100%; height: auto; display: block; }
   display: block;
 }
 
-/* Right column button wrapper (kept in case you use side column elsewhere) */
-.bookingAside{
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  position: sticky;
-  top: 18px;
+.bookingAirbnbButton{
+  white-space: nowrap;
+  min-width: 180px;
 }
 
+
+/* --- Footer --- */
 .footer{
   padding: 30px 0 44px;
   color: rgba(255,255,255,0.45);
@@ -314,33 +330,18 @@ img{ max-width: 100%; height: auto; display: block; }
   }
 
   .bookingTopBar{
-    flex-direction: column;
-    align-items: stretch;
-    padding: 14px 14px 0;
-  }
-
-  .bookingPicker{
-    min-width: 100%;
-  }
-
-  .bookingGrid{
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr; /* stack */
     padding: 14px;
   }
 
-  /* ✅ keep Airbnb button close to widget (no huge blank space) */
-  .bookingAside{
-    position: static;
-    justify-content: center;
-    align-items: center;
-  }
-  .bookingAside .button{
-    width: min(520px, 100%);
+  .bookingGrid{
+    padding: 14px;
+    gap: 12px;
   }
 
-  /* ✅ more room so Hostaway’s bottom buttons don’t feel cramped on mobile */
   .widgetMount{
     min-height: 620px;
   }
 }
+
+

@@ -12,59 +12,56 @@ type HostawayCalendarWidgetProps = {
   listingId: number;
 };
 
+const SCRIPT_SRC = "https://d2q3n06xhbi0am.cloudfront.net/calendar.js";
+const HOSTAWAY_BASE_URL = "https://roamstead_ventures.holidayfuture.com/";
+const CONTAINER_ID = "hostaway-calendar-widget";
+
 export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWidgetProps) {
   useEffect(() => {
-    const SCRIPT_SRC = "https://d2q3n06xhbi0am.cloudfront.net/calendar.js";
-    const HOSTAWAY_BASE_URL = "https://roamstead_ventures.holidayfuture.com/";
-    const CONTAINER_ID = "hostaway-calendar-widget";
+    if (typeof window === "undefined") return;
 
-    function init(attempt = 0) {
-      if (typeof window === "undefined") return;
+    // 1) Clear the container
+    const container = document.getElementById(CONTAINER_ID);
+    if (container) container.innerHTML = "";
 
-      if (typeof window.hostawayCalendarWidget !== "function") {
-        if (attempt < 30) window.setTimeout(() => init(attempt + 1), 100);
-        return;
-      }
+    // 2) Remove any existing Hostaway scripts so we get a clean re-init
+    const oldScripts = Array.from(document.querySelectorAll('script[src^="https://d2q3n06xhbi0am.cloudfront.net/calendar.js"]'));
+    oldScripts.forEach((s) => s.parentNode?.removeChild(s));
 
-      const container = document.getElementById(CONTAINER_ID);
-      if (!container) return;
-
-      // ✅ Hard reset the widget contents (do NOT remove/recreate the node)
-      container.innerHTML = "";
-
-      // ✅ Small delay lets the DOM settle before Hostaway injects again
-      window.setTimeout(() => {
-        window.hostawayCalendarWidget?.({
-          baseUrl: HOSTAWAY_BASE_URL,
-          listingId,
-          numberOfMonths: 2,
-          openInNewTab: true,
-          rounded: true,
-          button: { action: "checkout", text: "Book now" },
-          clearButtonText: "Clear dates",
-        });
-      }, 50);
+    // 3) Remove global function to avoid cached internal state
+    try {
+      delete (window as any).hostawayCalendarWidget;
+    } catch {
+      (window as any).hostawayCalendarWidget = undefined;
     }
 
-    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`) as HTMLScriptElement | null;
-
-    if (existing) {
-      init();
-      return;
-    }
-
+    // 4) Load script fresh (cache-busted), then init
     const script = document.createElement("script");
-    script.src = SCRIPT_SRC;
+    script.src = `${SCRIPT_SRC}?v=${listingId}-${Date.now()}`;
     script.async = true;
-    script.onload = () => init();
+
+    script.onload = () => {
+      if (typeof window.hostawayCalendarWidget !== "function") return;
+
+      window.hostawayCalendarWidget({
+        baseUrl: HOSTAWAY_BASE_URL,
+        listingId,
+        numberOfMonths: 2,
+        openInNewTab: true,
+        rounded: true,
+        button: { action: "checkout", text: "Book now" },
+        clearButtonText: "Clear dates",
+      });
+    };
+
     document.body.appendChild(script);
 
+    // Cleanup when switching listings / unmount
     return () => {
-      // cleanup (optional)
-      const container = document.getElementById(CONTAINER_ID);
-      if (container) container.innerHTML = "";
+      const c = document.getElementById(CONTAINER_ID);
+      if (c) c.innerHTML = "";
     };
   }, [listingId]);
 
-  return <div id="hostaway-calendar-widget" />;
+  return <div id={CONTAINER_ID} />;
 }
