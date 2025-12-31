@@ -37,7 +37,8 @@ export default function BookingSection() {
           >
             {LISTINGS.map((l) => (
               <option key={l.id} value={l.id}>
-                {l.name}{l.location ? ` — ${l.location}` : ""}
+                {l.name}
+                {l.location ? ` — ${l.location}` : ""}
               </option>
             ))}
           </select>
@@ -46,8 +47,7 @@ export default function BookingSection() {
 
       <div className="bookingGrid">
         <div className="widgetMount">
-          {/* key forces a full remount so the Hostaway widget re-inits */}
-          <HostawayCalendarWidget key={selectedId} listingId={selectedId} />
+          <HostawayCalendarWidget listingId={selectedId} />
         </div>
       </div>
 
@@ -57,3 +57,4 @@ export default function BookingSection() {
     </div>
   );
 }
+
