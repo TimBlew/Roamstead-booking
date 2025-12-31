@@ -203,13 +203,59 @@ img{ max-width: 100%; height: auto; display: block; }
   color: var(--muted);
 }
 
-/* --- Booking layout --- */
+/* --- Booking layout (Option B selector) --- */
+.bookingTopBar{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 0;
+}
+
+.bookingPicker{
+  display: grid;
+  gap: 6px;
+  min-width: min(520px, 100%);
+}
+
+.pickerLabel{
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+.pickerSelect{
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.35);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.pickerSelect:focus{
+  border-color: rgba(255,255,255,0.26);
+}
+
+.bookingHint{
+  padding: 0 18px 16px;
+  color: var(--muted2);
+  font-size: 12px;
+}
+
+/* Base booking grid (kept for compatibility) */
 .bookingGrid{
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 18px;
   padding: 18px;
   align-items: start;
+}
+
+/* Option B: widget only (single column) */
+.bookingGridSingle{
+  grid-template-columns: 1fr;
+  padding-top: 12px;
 }
 
 /*
@@ -238,7 +284,7 @@ img{ max-width: 100%; height: auto; display: block; }
   display: block;
 }
 
-/* Right column button wrapper */
+/* Right column button wrapper (kept in case you use side column elsewhere) */
 .bookingAside{
   display: flex;
   align-items: flex-start;
@@ -265,6 +311,16 @@ img{ max-width: 100%; height: auto; display: block; }
 
   .amenitiesGrid{
     grid-template-columns: 1fr;
+  }
+
+  .bookingTopBar{
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 14px 0;
+  }
+
+  .bookingPicker{
+    min-width: 100%;
   }
 
   .bookingGrid{
