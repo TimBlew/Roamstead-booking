@@ -15,29 +15,34 @@ type HostawayCalendarWidgetProps = {
 export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWidgetProps) {
   useEffect(() => {
     const SCRIPT_SRC = "https://d2q3n06xhbi0am.cloudfront.net/calendar.js";
-
-    // ✅ Must be your Hostaway booking engine domain
     const HOSTAWAY_BASE_URL = "https://roamstead_ventures.holidayfuture.com/";
-
+    const ROOT_ID = "hostaway-widget-root";
     const CONTAINER_ID = "hostaway-calendar-widget";
+
+    function mountFreshContainer() {
+      const root = document.getElementById(ROOT_ID);
+      if (!root) return;
+
+      // Remove any previous widget container entirely
+      root.innerHTML = "";
+
+      // Create a brand-new container with the exact id Hostaway expects
+      const container = document.createElement("div");
+      container.id = CONTAINER_ID;
+      root.appendChild(container);
+    }
 
     function init(attempt = 0) {
       if (typeof window === "undefined") return;
 
       if (typeof window.hostawayCalendarWidget !== "function") {
-        if (attempt < 20) {
-          window.setTimeout(() => init(attempt + 1), 100);
-        }
+        if (attempt < 30) window.setTimeout(() => init(attempt + 1), 100);
         return;
       }
 
-      // 🔥 HARD RESET: remove old widget content
-      const oldContainer = document.getElementById(CONTAINER_ID);
-      if (oldContainer) {
-        oldContainer.innerHTML = "";
-      }
+      // Force a fresh container before initializing
+      mountFreshContainer();
 
-      // 🔥 Re-init widget with NEW listingId
       window.hostawayCalendarWidget({
         baseUrl: HOSTAWAY_BASE_URL,
         listingId,
@@ -52,10 +57,7 @@ export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWi
       });
     }
 
-    // Load script once
-    const existing = document.querySelector(
-      `script[src="${SCRIPT_SRC}"]`
-    ) as HTMLScriptElement | null;
+    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`) as HTMLScriptElement | null;
 
     if (existing) {
       init();
@@ -69,5 +71,10 @@ export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWi
     document.body.appendChild(script);
   }, [listingId]);
 
-  return <div id="hostaway-calendar-widget" />;
+  // Root wrapper so we can fully replace the container on selection changes
+  return (
+    <div id="hostaway-widget-root">
+      <div id="hostaway-calendar-widget" />
+    </div>
+  );
 }
