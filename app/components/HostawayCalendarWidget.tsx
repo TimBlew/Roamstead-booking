@@ -16,17 +16,28 @@ export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWi
   useEffect(() => {
     const SCRIPT_SRC = "https://d2q3n06xhbi0am.cloudfront.net/calendar.js";
 
-    // ✅ IMPORTANT: this must be Hostaway’s booking engine domain (not your site)
+    // ✅ Must be your Hostaway booking engine domain
     const HOSTAWAY_BASE_URL = "https://roamstead_ventures.holidayfuture.com/";
+
+    const CONTAINER_ID = "hostaway-calendar-widget";
 
     function init(attempt = 0) {
       if (typeof window === "undefined") return;
 
       if (typeof window.hostawayCalendarWidget !== "function") {
-        if (attempt < 20) window.setTimeout(() => init(attempt + 1), 100);
+        if (attempt < 20) {
+          window.setTimeout(() => init(attempt + 1), 100);
+        }
         return;
       }
 
+      // 🔥 HARD RESET: remove old widget content
+      const oldContainer = document.getElementById(CONTAINER_ID);
+      if (oldContainer) {
+        oldContainer.innerHTML = "";
+      }
+
+      // 🔥 Re-init widget with NEW listingId
       window.hostawayCalendarWidget({
         baseUrl: HOSTAWAY_BASE_URL,
         listingId,
@@ -41,7 +52,10 @@ export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWi
       });
     }
 
-    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`) as HTMLScriptElement | null;
+    // Load script once
+    const existing = document.querySelector(
+      `script[src="${SCRIPT_SRC}"]`
+    ) as HTMLScriptElement | null;
 
     if (existing) {
       init();
