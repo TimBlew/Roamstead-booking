@@ -1,151 +1,180 @@
 import Image from "next/image";
-import type { ReactNode, SVGProps } from "react";
 import BookingSection from "./components/BookingSection";
 
-function getIcon(name: string): ReactNode {
-  const baseProps: SVGProps<SVGSVGElement> = {
-    width: 22,
-    height: 22,
-    stroke: "currentColor",
-    fill: "none",
-    strokeWidth: 1.6,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-  };
+function HeroSection() {
+  return (
+    <section className="hero">
+      {/* Background image */}
+      <div
+        className="heroBg"
+        style={{ backgroundImage: "url(/assets/roamstead_mountain_bg.png)" }}
+        aria-hidden="true"
+      />
+      <div className="heroOverlay" aria-hidden="true" />
 
-  switch (name) {
-    case "mountain":
-      return (
-        <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 20L12 4l9 16" />
-          <path d="M9.5 14L12 10l2.5 4" />
-        </svg>
-      );
-    case "wifi":
-      return (
-        <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M5 12a12 12 0 0 1 14 0" />
-          <path d="M8.5 15.5a7 7 0 0 1 7 0" />
-          <circle cx="12" cy="19" r="0.8" fill="currentColor" stroke="none" />
-        </svg>
-      );
-    case "home":
-      return (
-        <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 11l9-7 9 7" />
-          <path d="M9 22V12h6v10" />
-        </svg>
-      );
-    case "users":
-      return (
-        <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="9" cy="8" r="3" />
-          <circle cx="17" cy="8" r="3" />
-          <path d="M2 20c0-3 4-5 7-5" />
-          <path d="M22 20c0-3-4-5-7-5" />
-        </svg>
-      );
-    case "coffee":
-      return (
-        <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 8h13v6a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z" />
-          <path d="M16 10h3a2 2 0 0 1 0 4h-3" />
-        </svg>
-      );
-    case "calendar":
-      return (
-        <svg {...baseProps} viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="18" rx="2" />
-          <path d="M16 2v4M8 2v4M3 10h18" />
-        </svg>
-      );
-    default:
-      return null;
-  }
+      <div className="container heroContent">
+        {/* Logo / wordmark (use whichever file you have) */}
+        <Image
+          src="/assets/roamstead_logo_wordmark_transparent.png"
+          alt="Roamstead"
+          width={900}
+          height={260}
+          className="wordmark"
+          priority
+        />
+
+        <h1 className="headline">Providing more space to roam</h1>
+        <p className="subhead">
+          A modern mountain stay designed for travelers who value space, community, and adventure.
+        </p>
+
+        <div className="ctaRow">
+          <a className="button" href="#book">
+            Book your stay
+          </a>
+          <a className="button linkButton" href="#experiences">
+            Explore experiences
+          </a>
+        </div>
+      </div>
+    </section>
+  );
 }
 
-function Amenity(props: { icon: string; title: string; text: string }) {
+function MarketingSection() {
   return (
-    <div className="amenityCard">
-      <div className="amenityIcon" aria-hidden="true">
-        {getIcon(props.icon)}
+    <section className="mk-wrap" id="about">
+      {/* STORY */}
+      <div className="mk-section">
+        <div className="mk-grid2">
+          <div>
+            <h2 className="mk-h2">A home for those who roam</h2>
+            <p className="mk-p">
+              Roamstead brings together the best of mountain living and modern hospitality — a place to unplug, get
+              outside, and still have everything you need to stay connected.
+            </p>
+            <ul className="mk-list">
+              <li>Experience-first stays, luxury-second</li>
+              <li>Community-centered spaces</li>
+              <li>Remote-friendly amenities for modern travel</li>
+            </ul>
+          </div>
+
+          <div className="mk-cardImg">
+            <Image
+              src="/roamstead/collective.png"
+              alt="Roamstead Collective"
+              width={1200}
+              height={675}
+              className="mk-img"
+            />
+          </div>
+        </div>
       </div>
-      <div>
-        <h3 className="amenityTitle">{props.title}</h3>
-        <p className="amenityText">{props.text}</p>
+
+      {/* AMENITIES */}
+      <div className="mk-section mk-sectionAlt">
+        <h2 className="mk-h2Center">Built for the modern traveler</h2>
+        <div className="mk-cards">
+          <div className="mk-card">
+            <h3 className="mk-h3">Co-work + gathering</h3>
+            <p className="mk-pSm">Work-friendly rooms and shared spaces designed for focus and connection.</p>
+          </div>
+          <div className="mk-card">
+            <h3 className="mk-h3">Cafe + coffee bar</h3>
+            <p className="mk-pSm">A comfortable third space for locals and guests to fuel up and hang out.</p>
+          </div>
+          <div className="mk-card">
+            <h3 className="mk-h3">Wellness + recovery</h3>
+            <p className="mk-pSm">Health-forward amenities to reset after big days in the mountains.</p>
+          </div>
+          <div className="mk-card">
+            <h3 className="mk-h3">Community events</h3>
+            <p className="mk-pSm">Experience-driven meetups, rides, and local partnerships.</p>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* LOCATION */}
+      <div className="mk-section">
+        <div className="mk-grid2">
+          <div className="mk-cardImg">
+            <Image
+              src="/roamstead/heber-valley.png"
+              alt="Heber Valley - Utah’s fastest growing mountain destination"
+              width={1200}
+              height={675}
+              className="mk-img"
+            />
+          </div>
+
+          <div>
+            <h2 className="mk-h2">Now coming to Heber Valley</h2>
+            <p className="mk-p">
+              Four-season access to skiing, trails, lakes, and mountain towns — an ideal basecamp for weekend escapes or
+              longer “work + adventure” stays.
+            </p>
+            <div className="mk-pillRow">
+              <span className="mk-pill">Ski</span>
+              <span className="mk-pill">Bike</span>
+              <span className="mk-pill">Hike</span>
+              <span className="mk-pill">Paddle</span>
+              <span className="mk-pill">Events</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* EXPERIENCES */}
+      <div className="mk-section mk-sectionAlt" id="experiences">
+        <h2 className="mk-h2Center">Four seasons of adventure</h2>
+        <div className="mk-grid2">
+          <div className="mk-cardImg">
+            <Image
+              src="/roamstead/winter-skiing.png"
+              alt="Premier winter skiing"
+              width={1200}
+              height={675}
+              className="mk-img"
+            />
+            <p className="mk-cap">Winter: Premier skiing nearby.</p>
+          </div>
+
+          <div className="mk-cardImg">
+            <Image
+              src="/roamstead/summer-fall-activities.png"
+              alt="Summer and fall activities"
+              width={1200}
+              height={675}
+              className="mk-img"
+            />
+            <p className="mk-cap">Summer/Fall: Trails, water, and wide-open mountain days.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
   );
 }
 
 export default function Page() {
-  const AIRBNB_URL = "https://www.airbnb.com/";
-  const heroBg = "/assets/roamstead_mountain_bg.png";
-  const wordmark = "/assets/roamstead_logo_wordmark_transparent.png";
-
   return (
     <main>
-      {/* HERO */}
-      <section className="hero" aria-label="Roamstead hero">
-        <div
-          className="heroBg"
-          style={{ backgroundImage: `url(${heroBg})` }}
-          role="img"
-          aria-label="Mountain landscape background"
-        />
-        <div className="heroOverlay" />
+      <HeroSection />
+      <MarketingSection />
 
-        <div className="container heroContent">
-          <Image className="wordmark" src={wordmark} alt="Roamstead" width={900} height={220} priority />
-
-          <h1 className="headline">Providing more space to roam</h1>
-          <p className="subhead">
-            A modern mountain stay designed for travelers who value space, community, and adventure.
-          </p>
-
-          <div className="ctaRow">
-            <a className="button" href="#book">
-              Book your stay
-            </a>
-            <a className="button linkButton" href={AIRBNB_URL} target="_blank" rel="noreferrer">
-              View on Airbnb
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* AMENITIES */}
-      <section className="section" aria-label="Amenities">
-        <div className="container">
-          <h2 className="sectionTitle">Designed for how people travel today</h2>
-          <p className="sectionCopy">Built for adventure, community, and flexibility — without the “luxury-only” vibe.</p>
-
-          <div className="amenitiesGrid">
-            <Amenity icon="mountain" title="Adventure Access" text="Four-season surroundings built for exploring." />
-            <Amenity icon="wifi" title="Remote-Work Ready" text="Fast Wi-Fi and comfortable work-friendly space." />
-            <Amenity icon="home" title="Modern Comfort" text="A clean, intentional stay focused on experience." />
-            <Amenity icon="users" title="Community Spaces" text="Room to gather — and room to unplug." />
-            <Amenity icon="coffee" title="Hospitality Touches" text="Simple comforts that make it feel effortless." />
-            <Amenity icon="calendar" title="Flexible Stays" text="Great for quick trips, workations, and longer stays." />
-          </div>
-        </div>
-      </section>
-
-      {/* BOOKING */}
-      <section id="book" className="section" aria-label="Booking">
+      <section className="section">
         <div className="container">
           <h2 className="sectionTitle">Book your stay</h2>
           <p className="sectionCopy">Choose a property, select your dates, and book directly.</p>
 
-          {/* ✅ Option A: no props */}
           <BookingSection />
         </div>
       </section>
-
-      <footer className="footer">© {new Date().getFullYear()} Roamstead. All rights reserved.</footer>
     </main>
   );
 }
+
 
 
 
