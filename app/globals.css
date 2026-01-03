@@ -457,7 +457,10 @@ ul,ol{ padding-left:18px; }
   z-index:2;
 }
 
+/* ✅ Ensure the hero card stays above the hero overlay on mobile too */
 .listingPage .listingHeroCard{
+  position:relative;
+  z-index:2;
   padding:18px;
   background:rgba(0,0,0,0.58);
   border:1px solid rgba(255,255,255,0.12);
@@ -570,7 +573,8 @@ ul,ol{ padding-left:18px; }
   .mk-cards{ grid-template-columns:1fr 1fr; }
   .propertyGrid{ grid-template-columns:1fr; }
 
-  .listingPage .listingHeroInner{ position:static; padding:18px 0; }
+  /* ✅ Keep it "positioned" so it can sit above ::after overlay */
+  .listingPage .listingHeroInner{ position:relative; z-index:2; padding:18px 0; }
   .listingPage .listingMain{ padding-top:18px; }
 
   .listingPage .listingGalleryGrid{ grid-template-columns:1fr; }

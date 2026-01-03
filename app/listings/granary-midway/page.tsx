@@ -52,11 +52,18 @@ export default function GranaryPage() {
         </div>
 
         <div className="container listingHeroInner">
-          <div className="listingHeroCard card">
+          <div
+            className="listingHeroCard card"
+            style={{ position: "relative", zIndex: 3 }}
+          >
             <div className="listingHeroTop">
               <div>
                 {/* Back to home */}
-                <Link href="/" className="button linkButton" style={{ marginBottom: "10px" }}>
+                <Link
+                  href="/"
+                  className="button linkButton"
+                  style={{ marginBottom: "10px" }}
+                >
                   ← Back to home
                 </Link>
 
@@ -114,7 +121,7 @@ export default function GranaryPage() {
             <div className="listingSection card">
               <h2 className="listingH2">Sleeping arrangements</h2>
               <p className="listingP">
-                <strong>Bedroom:</strong> 1 king-sized bed  
+                <strong>Bedroom:</strong> 1 king-sized bed
                 <br />
                 <strong>Living Room:</strong> Pull-out couch + fireplace seating
               </p>
@@ -158,3 +165,4 @@ export default function GranaryPage() {
     </main>
   );
 }
+
