@@ -1,10 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
 import BookingSection from "./components/BookingSection";
+
+const PROPERTIES = [
+  {
+    slug: "granary-midway",
+    title: "Granary",
+    location: "Midway, UT",
+    meta: "Sleeps 4 • 1 Bedroom • 1 Bath",
+    image: "/listings/granary/living-01.jpg",
+  },
+];
 
 function HeroSection() {
   return (
     <section className="hero">
-      {/* Background image */}
       <div
         className="heroBg"
         style={{ backgroundImage: "url(/assets/roamstead_mountain_bg.png)" }}
@@ -13,7 +23,6 @@ function HeroSection() {
       <div className="heroOverlay" aria-hidden="true" />
 
       <div className="container heroContent">
-        {/* Logo / wordmark (use whichever file you have) */}
         <Image
           src="/assets/roamstead_logo_wordmark_transparent.png"
           alt="Roamstead"
@@ -41,10 +50,43 @@ function HeroSection() {
   );
 }
 
+function PropertiesSection() {
+  return (
+    <section className="section" id="properties">
+      <div className="container">
+        <h2 className="sectionTitle">Properties</h2>
+        <p className="sectionCopy">Browse our stays and book directly.</p>
+
+        <div className="propertyGrid">
+          {PROPERTIES.map((p) => (
+            <Link key={p.slug} href={`/listings/${p.slug}`} className="propertyCard">
+              <div className="propertyImage">
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  fill
+                  className="propertyImg"
+                  sizes="(max-width: 900px) 100vw, 33vw"
+                />
+              </div>
+
+              <div className="propertyBody">
+                <h3 className="propertyTitle">{p.title}</h3>
+                <p className="propertyLocation">{p.location}</p>
+                <p className="propertyMeta">{p.meta}</p>
+                <span className="propertyCta">View details →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function MarketingSection() {
   return (
     <section className="mk-wrap" id="about">
-      {/* STORY */}
       <div className="mk-section">
         <div className="mk-grid2">
           <div>
@@ -72,7 +114,6 @@ function MarketingSection() {
         </div>
       </div>
 
-      {/* AMENITIES */}
       <div className="mk-section mk-sectionAlt">
         <h2 className="mk-h2Center">Built for the modern traveler</h2>
         <div className="mk-cards">
@@ -95,37 +136,6 @@ function MarketingSection() {
         </div>
       </div>
 
-      {/* LOCATION */}
-      <div className="mk-section">
-        <div className="mk-grid2">
-          <div className="mk-cardImg">
-            <Image
-              src="/roamstead/heber-valley.png"
-              alt="Heber Valley - Utah’s fastest growing mountain destination"
-              width={1200}
-              height={675}
-              className="mk-img"
-            />
-          </div>
-
-          <div>
-            <h2 className="mk-h2">Now coming to Heber Valley</h2>
-            <p className="mk-p">
-              Four-season access to skiing, trails, lakes, and mountain towns — an ideal basecamp for weekend escapes or
-              longer “work + adventure” stays.
-            </p>
-            <div className="mk-pillRow">
-              <span className="mk-pill">Ski</span>
-              <span className="mk-pill">Bike</span>
-              <span className="mk-pill">Hike</span>
-              <span className="mk-pill">Paddle</span>
-              <span className="mk-pill">Events</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* EXPERIENCES */}
       <div className="mk-section mk-sectionAlt" id="experiences">
         <h2 className="mk-h2Center">Four seasons of adventure</h2>
         <div className="mk-grid2">
@@ -152,7 +162,6 @@ function MarketingSection() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }
@@ -161,13 +170,13 @@ export default function Page() {
   return (
     <main>
       <HeroSection />
+      <PropertiesSection />
       <MarketingSection />
 
-      <section className="section">
+      <section className="section" id="book">
         <div className="container">
           <h2 className="sectionTitle">Book your stay</h2>
           <p className="sectionCopy">Choose a property, select your dates, and book directly.</p>
-
           <BookingSection />
         </div>
       </section>
