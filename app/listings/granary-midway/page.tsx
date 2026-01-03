@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import BookingSection from "@/app/components/BookingSection";
 
 const IMAGES = [
@@ -36,7 +37,7 @@ const AMENITIES = [
 
 export default function GranaryPage() {
   return (
-    <main className="listingPage">   
+    <main className="listingPage">
       {/* HERO */}
       <section className="listingHeroWrap">
         <div className="listingHeroMedia">
@@ -54,6 +55,11 @@ export default function GranaryPage() {
           <div className="listingHeroCard card">
             <div className="listingHeroTop">
               <div>
+                {/* Back to home */}
+                <Link href="/" className="button linkButton" style={{ marginBottom: "10px" }}>
+                  ← Back to home
+                </Link>
+
                 <h1 className="listingTitle">Granary</h1>
                 <p className="listingLocation">Midway, UT</p>
 
@@ -91,7 +97,7 @@ export default function GranaryPage() {
           ))}
         </div>
 
-        {/* Two-column: details + booking */}
+        {/* Two-column layout */}
         <div className="listingColumns">
           <div className="listingLeft">
             <div className="listingSection card">
@@ -101,39 +107,32 @@ export default function GranaryPage() {
                 old-world character with modern comfort. Enjoy mountain views from
                 the spacious open floor plan with a full kitchen and gas fireplace.
                 Newly renovated with ample closet space, a pull-out sofa for extra
-                sleeping space, and in-unit washer/dryer. Just a 15-minute walk to
-                Midway’s best restaurants and shops, and a short drive to Utah’s
-                finest outdoor adventures.
+                sleeping space, and in-unit washer/dryer.
               </p>
             </div>
 
             <div className="listingSection card">
               <h2 className="listingH2">Sleeping arrangements</h2>
               <p className="listingP">
-                <strong>Bedroom:</strong> 1 king-sized bed with bedside tables,
-                dresser, large closet, and window blinds.
+                <strong>Bedroom:</strong> 1 king-sized bed  
                 <br />
-                <strong>Living Room:</strong> 2-person pull-out couch + 2 seating
-                chairs around a warm fireplace &amp; smart TV. Extra linens
-                provided.
+                <strong>Living Room:</strong> Pull-out couch + fireplace seating
               </p>
             </div>
 
             <div className="listingSection card">
               <h2 className="listingH2">Kitchen &amp; dining</h2>
               <p className="listingP">
-                Fully-stocked kitchen with granite countertops, Keurig (with pods),
-                blender, dishwasher, and cooking basics. Dining table for four plus
-                a small workstation.
+                Fully-stocked kitchen with Keurig, dishwasher, and dining table
+                for four.
               </p>
             </div>
 
             <div className="listingSection card">
               <h2 className="listingH2">Parking</h2>
               <p className="listingP">
-                1 covered parking spot included. This unit is one of 16 residential
-                condo units in the Granary Building. Additional parking may be
-                available upon request and approval.
+                1 covered parking spot included. Additional parking available
+                upon request.
               </p>
             </div>
 
@@ -149,7 +148,7 @@ export default function GranaryPage() {
             </div>
           </div>
 
-          <aside className="listingRight">
+          <aside className="listingRight" id="book">
             <div className="listingSticky">
               <BookingSection defaultListingId={455631} />
             </div>
@@ -159,4 +158,3 @@ export default function GranaryPage() {
     </main>
   );
 }
-
