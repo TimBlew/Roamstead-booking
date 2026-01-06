@@ -15,24 +15,18 @@ const IMAGES = [
 ];
 
 const AMENITIES = [
-  "Wi-Fi",
-  "Air conditioning",
-  "Heating",
+  "Mountain views",
   "Gas fireplace",
-  "In-unit washer & dryer",
-  "Fully stocked kitchen",
-  "Dishwasher",
-  "Keurig + pods",
+  "Fully equipped kitchen",
+  "Keurig coffee station",
+  "Dining table for four",
+  "In-unit washer + dryer",
   "Smart TV",
-  "Laptop-friendly workspace",
-  "Free covered parking (1 spot)",
-  "Family friendly",
-  "Tub / shower",
-  "Hair dryer",
-  "Smoke detector",
-  "Carbon monoxide detector",
-  "Fire extinguisher",
-  "First aid kit",
+  "Fast Wi-Fi",
+  "Dedicated workspace",
+  "Covered parking (1 spot)",
+  "Walkable to Midway dining + shops",
+  "Family-friendly",
 ];
 
 export default function GranaryPage() {
@@ -152,6 +146,9 @@ export default function GranaryPage() {
                   </span>
                 ))}
               </div>
+                <p className="listingP" style={{ marginTop: "10px", color: "rgba(255,255,255,0.62)", fontSize: "13px" }}>
+                  Safety: smoke detector • carbon monoxide detector • fire extinguisher • first aid kit
+                </p>
             </div>
           </div>
 

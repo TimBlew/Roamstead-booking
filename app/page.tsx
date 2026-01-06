@@ -10,6 +10,14 @@ const PROPERTIES = [
     meta: "Sleeps 4 • 1 Bedroom • 1 Bath",
     image: "/listings/granary/living-01.jpg",
   },
+
+  {
+    slug: "daystar-deer-valley",
+    title: "Daystar",
+    location: "Deer Valley, Park City, UT",
+    meta: "Sleeps 12 • 6 Bedrooms • 6 Baths",
+    image: "/listings/daystar/exterior-02.jpg",
+  },
 ];
 
 function HeroSection() {
