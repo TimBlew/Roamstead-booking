@@ -170,11 +170,28 @@ ul,ol{ padding-left:18px; }
 
 .section#properties{ padding-bottom:34px; }
 
+/* Existing grid (kept for backwards compatibility) */
 .propertyGrid{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:16px;
   margin-top:6px;
+}
+
+/* ✅ New: propertyRow (desktop grid, mobile horizontal scroll w/ peek) */
+.propertyRow{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+  margin-top:6px;
+}
+
+/* Hide scrollbar (still scrollable) */
+.propertyRow{
+  scrollbar-width:none; /* Firefox */
+}
+.propertyRow::-webkit-scrollbar{
+  display:none; /* Chrome/Safari */
 }
 
 .propertyCard{
@@ -572,6 +589,27 @@ ul,ol{ padding-left:18px; }
   .mk-grid2{ grid-template-columns:1fr; }
   .mk-cards{ grid-template-columns:1fr 1fr; }
   .propertyGrid{ grid-template-columns:1fr; }
+
+  /* ✅ Mobile: horizontal scroll + snap + peek for propertyRow */
+  .propertyRow{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+
+    /* snap */
+    scroll-snap-type:x mandatory;
+
+    /* little breathing room so first card doesn't hug the edge */
+    padding:6px 2px 10px;
+    margin-top:6px;
+  }
+
+  .propertyRow .propertyCard{
+    flex:0 0 82%;
+    max-width:82%;
+    scroll-snap-align:start;
+  }
 
   /* ✅ Keep it "positioned" so it can sit above ::after overlay */
   .listingPage .listingHeroInner{ position:relative; z-index:2; padding:18px 0; }

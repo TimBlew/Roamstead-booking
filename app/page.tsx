@@ -10,13 +10,19 @@ const PROPERTIES = [
     meta: "Sleeps 4 • 1 Bedroom • 1 Bath",
     image: "/listings/granary/living-01.jpg",
   },
-
   {
     slug: "daystar-deer-valley",
     title: "Daystar",
     location: "Deer Valley, Park City, UT",
     meta: "Sleeps 12 • 6 Bedrooms • 6 Baths",
     image: "/listings/daystar/exterior-02.jpg",
+  },
+  {
+    slug: "lowell-302",
+    title: "Lowell 302",
+    location: "Park City, UT",
+    meta: "Sleeps 8 • 2 Bedrooms • 2 Baths",
+    image: "/listings/lowell-302/living-01.jpg",
   },
 ];
 
@@ -65,7 +71,8 @@ function PropertiesSection() {
         <h2 className="sectionTitle">Properties</h2>
         <p className="sectionCopy">Browse our stays and book directly.</p>
 
-        <div className="propertyGrid">
+        {/* Changed from propertyGrid -> propertyRow to support horizontal scroll on mobile */}
+        <div className="propertyRow">
           {PROPERTIES.map((p) => (
             <Link key={p.slug} href={`/listings/${p.slug}`} className="propertyCard">
               <div className="propertyImage">
@@ -74,7 +81,7 @@ function PropertiesSection() {
                   alt={p.title}
                   fill
                   className="propertyImg"
-                  sizes="(max-width: 900px) 100vw, 33vw"
+                  sizes="(max-width: 900px) 82vw, 33vw"
                 />
               </div>
 
