@@ -178,16 +178,14 @@ ul,ol{ padding-left:18px; }
   margin-top:6px;
 }
 
-/* ✅ New: propertyRow (desktop grid, mobile horizontal scroll w/ peek) */
+/* ✅ propertyRow (desktop grid, mobile horizontal scroll w/ peek) */
 .propertyRow{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:16px;
   margin-top:6px;
-}
 
-/* Hide scrollbar (still scrollable) */
-.propertyRow{
+  /* Hide scrollbar (still scrollable) */
   scrollbar-width:none; /* Firefox */
 }
 .propertyRow::-webkit-scrollbar{
@@ -252,6 +250,42 @@ ul,ol{ padding-left:18px; }
   font-size:13px;
   font-weight:700;
   color:rgba(255,255,255,0.88);
+}
+
+/* ✅ Carousel dots (used by updated page.tsx) */
+.propertyCarousel{ width:100%; }
+
+.carouselDots{
+  display:none;
+  justify-content:center;
+  gap:8px;
+  margin-top:12px;
+}
+
+.carouselDot{
+  width:7px;
+  height:7px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.18);
+  background:rgba(0,0,0,0.35);
+  box-shadow:0 10px 22px rgba(0,0,0,0.35);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  padding:0;
+  cursor:pointer;
+  transition:transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.carouselDot:hover{
+  transform:scale(1.12);
+  background:rgba(255,255,255,0.10);
+  border-color:rgba(255,255,255,0.26);
+}
+
+.carouselDot.active{
+  background:rgba(255,255,255,0.88);
+  border-color:rgba(255,255,255,0.30);
+  transform:scale(1.25);
 }
 
 .card{
@@ -611,6 +645,11 @@ ul,ol{ padding-left:18px; }
     scroll-snap-align:start;
   }
 
+  /* ✅ Show dots only on mobile */
+  .carouselDots{
+    display:flex;
+  }
+
   /* ✅ Keep it "positioned" so it can sit above ::after overlay */
   .listingPage .listingHeroInner{ position:relative; z-index:2; padding:18px 0; }
   .listingPage .listingMain{ padding-top:18px; }
@@ -667,3 +706,4 @@ ul,ol{ padding-left:18px; }
   .listingPage .listingHeroTop{ flex-direction:column; align-items:stretch; }
   .listingPage .listingGalleryItem img{ height:240px; }
 }
+
