@@ -287,30 +287,7 @@ export default function CompanyPage() {
               gap: '16px',
               marginTop: '24px'
             }}>
-              <div>
-                <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>
-                  Investor Relations
-                </h3>
-                <a 
-                  href="mailto:investors@roamstead-co.com"
-                  style={{ color: 'rgba(255,255,255,0.78)', fontSize: '14px' }}
-                >
-                  investors@roamstead-co.com
-                </a>
-              </div>
-
-              <div>
-                <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>
-                  Media Inquiries
-                </h3>
-                <a 
-                  href="mailto:press@roamstead-co.com"
-                  style={{ color: 'rgba(255,255,255,0.78)', fontSize: '14px' }}
-                >
-                  press@roamstead-co.com
-                </a>
-              </div>
-
+                
               <div>
                 <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>
                   Property Management
