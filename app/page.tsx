@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -260,7 +259,7 @@ function IntroSection() {
           <div>
             <h2 className="mk-h2">A home for those who roam</h2>
             <p className="mk-p">
-              Founded in 2023, Roamstead is reimagining what mountain hospitality 
+              Roamstead is reimagining what mountain hospitality 
               can be. We're creating integrated spaces where travelers can work, 
               play, connect, and truly experience mountain living—all while 
               contributing to local communities.
