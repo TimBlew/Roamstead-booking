@@ -63,6 +63,22 @@ function HeroSection() {
             Explore experiences
           </a>
         </div>
+
+        {/* Property Management CTA */}
+        <div style={{ marginTop: '24px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.10)' }}>
+          <p style={{ 
+            fontSize: '14px', 
+            color: 'var(--muted)', 
+            marginBottom: '12px',
+            maxWidth: '520px',
+            margin: '0 auto 12px'
+          }}>
+            Own a property in Utah? Let us handle the management.
+          </p>
+          <Link href="/property-management" className="button linkButton">
+            Property owners →
+          </Link>
+        </div>
       </div>
     </section>
   );
