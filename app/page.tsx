@@ -257,7 +257,7 @@ function IntroSection() {
       <div className="mk-section">
         <div className="mk-grid2">
           <div>
-            <h2 className="mk-h2">Building hospitality infrastructure for the modern mountain economy</h2>
+            <h2 className="mk-h2">The Roamstead difference</h2>
             <p className="mk-p">
               Founded in 2023, Roamstead is reimagining what mountain hospitality 
               can be. We're creating integrated spaces where travelers can work, 
