@@ -12,6 +12,7 @@ const PROPERTIES = [
     location: "Midway, UT",
     meta: "Sleeps 4 • 1 Bedroom • 1 Bath",
     image: "/listings/granary/living-01.jpg",
+    available: true,
   },
   {
     slug: "daystar-deer-valley",
@@ -19,6 +20,7 @@ const PROPERTIES = [
     location: "Deer Valley, Park City, UT",
     meta: "Sleeps 12 • 6 Bedrooms • 6 Baths",
     image: "/listings/daystar/exterior-02.jpg",
+    available: true,
   },
   {
     slug: "lowell-302",
@@ -26,6 +28,16 @@ const PROPERTIES = [
     location: "Park City, UT",
     meta: "Sleeps 8 • 2 Bedrooms • 2 Baths",
     image: "/listings/lowell-302/living-01.jpg",
+    available: true,
+  },
+  {
+    slug: "senator",
+    title: "The Senator Collective",
+    location: "Heber Valley, UT",
+    meta: "10 Rooms • Cafe • Co-working",
+    image: "/listings/senator/exterior-01.jpg",
+    available: false,
+    comingSoon: "Spring 2026",
   },
 ];
 
@@ -51,32 +63,16 @@ function HeroSection() {
 
         <h1 className="headline">Providing more space to roam</h1>
         <p className="subhead">
-          A modern mountain stay designed for travelers who value space,
-          community, and adventure.
+          Modern mountain hospitality for travelers who value community, 
+          adventure, and authentic experiences.
         </p>
 
         <div className="ctaRow">
           <a className="button" href="#book">
             Book your stay
           </a>
-          <a className="button linkButton" href="#experiences">
-            Explore experiences
-          </a>
-        </div>
-
-        {/* Property Management CTA */}
-        <div style={{ marginTop: '24px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.10)' }}>
-          <p style={{ 
-            fontSize: '14px', 
-            color: 'var(--muted)', 
-            marginBottom: '12px',
-            maxWidth: '520px',
-            margin: '0 auto 12px'
-          }}>
-            Turn your mountain property into a home for those who roam.
-          </p>
-          <Link href="/property-management" className="button linkButton">
-            Property owners →
+          <Link href="/the-collective" className="button linkButton">
+            Explore The Collective
           </Link>
         </div>
       </div>
@@ -88,7 +84,6 @@ function PropertiesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // ✅ Only show dots on mobile (matches your CSS breakpoint)
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)");
     const apply = () => setIsMobile(mq.matches);
@@ -200,21 +195,39 @@ function PropertiesSection() {
                     alt={p.title}
                     fill
                     className="propertyImg"
-                    sizes="(max-width: 900px) 82vw, 33vw"
+                    sizes="(max-width: 900px) 82vw, 25vw"
                   />
+                  {p.comingSoon && (
+                    <div style={{
+                      position: 'absolute',
+                      top: '12px',
+                      right: '12px',
+                      padding: '6px 12px',
+                      background: 'rgba(59, 130, 246, 0.95)',
+                      backdropFilter: 'blur(10px)',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      color: 'white',
+                      border: '1px solid rgba(255,255,255,0.20)'
+                    }}>
+                      Coming {p.comingSoon}
+                    </div>
+                  )}
                 </div>
 
                 <div className="propertyBody">
                   <h3 className="propertyTitle">{p.title}</h3>
                   <p className="propertyLocation">{p.location}</p>
                   <p className="propertyMeta">{p.meta}</p>
-                  <span className="propertyCta">View details →</span>
+                  <span className="propertyCta">
+                    {p.available ? 'View details →' : 'Learn more →'}
+                  </span>
                 </div>
               </Link>
             ))}
           </div>
 
-          {/* ✅ Dots: render ONLY on mobile, styled inline so they MUST appear */}
           {isMobile && (
             <div style={dotsWrapStyle} aria-label="Property carousel pagination">
               {PROPERTIES.map((_, i) => (
@@ -238,23 +251,33 @@ function PropertiesSection() {
   );
 }
 
-function MarketingSection() {
+function IntroSection() {
   return (
-    <section className="mk-wrap" id="about">
+    <section className="mk-wrap">
       <div className="mk-section">
         <div className="mk-grid2">
           <div>
-            <h2 className="mk-h2">A home for those who roam</h2>
+            <h2 className="mk-h2">Building hospitality infrastructure for the modern mountain economy</h2>
             <p className="mk-p">
-              Roamstead brings together the best of mountain living and modern
-              hospitality — a place to unplug, get outside, and still have
-              everything you need to stay connected.
+              Founded in 2023, Roamstead is reimagining what mountain hospitality 
+              can be. We're creating integrated spaces where travelers can work, 
+              play, connect, and truly experience mountain living—all while 
+              contributing to local communities.
             </p>
-            <ul className="mk-list">
-              <li>Experience-first stays, luxury-second</li>
-              <li>Community-centered spaces</li>
-              <li>Remote-friendly amenities for modern travel</li>
-            </ul>
+            <p className="mk-p">
+              Our properties blend traditional vacation rentals with co-working 
+              spaces, cafes, wellness amenities, and community programming. 
+              It's hospitality built for the 35M Americans now working remotely 
+              and seeking authentic mountain experiences.
+            </p>
+            <div style={{ display: 'flex', gap: '12px', marginTop: '20px', flexWrap: 'wrap' }}>
+              <Link href="/about" className="button linkButton">
+                About Roamstead →
+              </Link>
+              <Link href="/the-collective" className="button linkButton">
+                The Collective Model →
+              </Link>
+            </div>
           </div>
 
           <div className="mk-cardImg">
@@ -268,9 +291,27 @@ function MarketingSection() {
           </div>
         </div>
       </div>
+    </section>
+  );
+}
 
+function CollectiveSection() {
+  return (
+    <section className="mk-wrap">
       <div className="mk-section mk-sectionAlt">
         <h2 className="mk-h2Center">Built for the modern traveler</h2>
+        <p style={{ 
+          textAlign: 'center', 
+          color: 'var(--muted)', 
+          maxWidth: '680px', 
+          margin: '0 auto 28px',
+          lineHeight: '1.6'
+        }}>
+          The Roamstead Collective integrates multiple experiences into 
+          cohesive mountain hospitality—designed for remote workers, adventure 
+          seekers, and community-minded travelers.
+        </p>
+
         <div className="mk-cards">
           <div className="mk-card">
             <h3 className="mk-h3">Co-work + gathering</h3>
@@ -299,9 +340,21 @@ function MarketingSection() {
             </p>
           </div>
         </div>
-      </div>
 
-      <div className="mk-section mk-sectionAlt" id="experiences">
+        <div style={{ textAlign: 'center', marginTop: '28px' }}>
+          <Link href="/the-collective" className="button linkButton">
+            Learn about The Collective model →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AdventureSection() {
+  return (
+    <section className="mk-wrap">
+      <div className="mk-section" id="experiences">
         <h2 className="mk-h2Center">Four seasons of adventure</h2>
         <div className="mk-grid2">
           <div className="mk-cardImg">
@@ -333,12 +386,33 @@ function MarketingSection() {
   );
 }
 
+function PropertyOwnersCTA() {
+  return (
+    <section className="section" style={{ background: 'rgba(255,255,255,0.02)' }}>
+      <div className="container" style={{ textAlign: 'center', maxWidth: '720px' }}>
+        <h2 className="sectionTitle">Property owners</h2>
+        <p className="sectionCopy" style={{ margin: '0 auto 20px' }}>
+          Turn your mountain property into a home for those who roam. 
+          We bring hospitality expertise, dynamic pricing, and multi-channel 
+          marketing to maximize your property's revenue potential.
+        </p>
+        <Link href="/property-management" className="button">
+          Learn about property management →
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 export default function Page() {
   return (
     <main>
       <HeroSection />
       <PropertiesSection />
-      <MarketingSection />
+      <IntroSection />
+      <CollectiveSection />
+      <AdventureSection />
+      <PropertyOwnersCTA />
 
       <section className="section" id="book">
         <div className="container">
@@ -352,5 +426,3 @@ export default function Page() {
     </main>
   );
 }
-
-
