@@ -8,7 +8,7 @@ import BookingSection from "./components/BookingSection";
 const PROPERTIES = [
   {
     slug: "senator",
-    title: "The Senator Collective",
+    title: "The Senator",
     location: "Heber Valley, UT",
     meta: "10 Rooms • Cafe • Co-working",
     image: "/assets/roamstead_mountain_bg.png",
