@@ -17,13 +17,11 @@ export default function Footer() {
             <Link href="/listings/granary-midway" className="footerLink">Granary - Midway</Link>
             <Link href="/listings/daystar-deer-valley" className="footerLink">Daystar - Deer Valley</Link>
             <Link href="/listings/lowell-302" className="footerLink">Lowell 302 - Park City</Link>
-            <Link href="/senator" className="footerLink">The Senator (Coming Soon)</Link>
+            <Link href="/listings/senator" className="footerLink">The Senator (Coming Soon)</Link>
           </div>
 
           <div className="footerCol">
             <h4 className="footerHeading">Company</h4>
-            <Link href="/about" className="footerLink">About Roamstead</Link>
-            <Link href="/the-collective" className="footerLink">The Collective Model</Link>
             <Link href="/property-management" className="footerLink">Property Management</Link>
             <Link href="/company" className="footerLink">Company Information</Link>
           </div>
