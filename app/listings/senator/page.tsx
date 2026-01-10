@@ -43,7 +43,7 @@ export default function SenatorPage() {
             Opening Spring 2026
           </div>
           
-          <h1 className="headline">The Senator Collective</h1>
+          <h1 className="headline">The Senator</h1>
           <p className="subhead" style={{ maxWidth: '720px' }}>
             A historic 1902 Heber Valley landmark transformed into Roamstead's
             flagship Collective space—blending boutique hospitality with co-working,
