@@ -1,3 +1,4 @@
+// app/page.tsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -6,15 +7,6 @@ import Link from "next/link";
 import BookingSection from "./components/BookingSection";
 
 const PROPERTIES = [
-  {
-    slug: "senator",
-    title: "The Senator",
-    location: "Heber Valley, UT",
-    meta: "10 Rooms • Cafe • Co-working",
-    image: "/listings/senator/exterior-01.jpg",
-    available: false,
-    comingSoon: "Spring 2026",
-  },
   {
     slug: "granary-midway",
     title: "Granary",
@@ -38,6 +30,15 @@ const PROPERTIES = [
     meta: "Sleeps 8 • 2 Bedrooms • 2 Baths",
     image: "/listings/lowell-302/living-01.jpg",
     available: true,
+  },
+  {
+    slug: "senator",
+    title: "The Senator Collective",
+    location: "Heber Valley, UT",
+    meta: "10 Rooms • Cafe • Co-working",
+    image: "/assets/roamstead_mountain_bg.png",
+    available: false,
+    comingSoon: "Spring 2026",
   },
 ];
 
@@ -71,9 +72,9 @@ function HeroSection() {
           <a className="button" href="#book">
             Book your stay
           </a>
-          <Link href="/the-collective" className="button linkButton">
-            Explore The Collective
-          </Link>
+          <a className="button linkButton" href="#experiences">
+            Explore experiences
+          </a>
         </div>
       </div>
     </section>
@@ -257,7 +258,7 @@ function IntroSection() {
       <div className="mk-section">
         <div className="mk-grid2">
           <div>
-            <h2 className="mk-h2">The Roamstead difference</h2>
+            <h2 className="mk-h2">A home for those who roam</h2>
             <p className="mk-p">
               Founded in 2023, Roamstead is reimagining what mountain hospitality 
               can be. We're creating integrated spaces where travelers can work, 
@@ -270,14 +271,14 @@ function IntroSection() {
               It's hospitality built for the 35M Americans now working remotely 
               and seeking authentic mountain experiences.
             </p>
-            <div style={{ display: 'flex', gap: '12px', marginTop: '20px', flexWrap: 'wrap' }}>
+            {/* <div style={{ display: 'flex', gap: '12px', marginTop: '20px', flexWrap: 'wrap' }}>
               <Link href="/about" className="button linkButton">
                 About Roamstead →
               </Link>
               <Link href="/the-collective" className="button linkButton">
                 The Collective Model →
               </Link>
-            </div>
+            </div> */}
           </div>
 
           <div className="mk-cardImg">
@@ -341,11 +342,11 @@ function CollectiveSection() {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '28px' }}>
+        {/* <div style={{ textAlign: 'center', marginTop: '28px' }}>
           <Link href="/the-collective" className="button linkButton">
             Learn about The Collective model →
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );

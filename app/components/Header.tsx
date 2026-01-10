@@ -24,8 +24,8 @@ export default function Header() {
 
         <nav className="desktopNav">
           <Link href="/#properties" className="navLink">Properties</Link>
-          <Link href="/the-collective" className="navLink">The Collective</Link>
-          <Link href="/about" className="navLink">About</Link>
+          {/* <Link href="/the-collective" className="navLink">The Collective</Link> */}
+          {/* <Link href="/about" className="navLink">About</Link> */}
           <Link href="/property-management" className="navLink">Property Owners</Link>
         </nav>
 
@@ -64,12 +64,12 @@ export default function Header() {
             <Link href="/#properties" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
               Properties
             </Link>
-            <Link href="/the-collective" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
+            {/* <Link href="/the-collective" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
               The Collective
             </Link>
             <Link href="/about" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
               About
-            </Link>
+            </Link> */}
             <Link href="/property-management" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
               Property Owners
             </Link>
