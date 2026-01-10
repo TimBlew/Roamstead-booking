@@ -7,6 +7,15 @@ import BookingSection from "./components/BookingSection";
 
 const PROPERTIES = [
   {
+    slug: "senator",
+    title: "The Senator Collective",
+    location: "Heber Valley, UT",
+    meta: "10 Rooms • Cafe • Co-working",
+    image: "/assets/roamstead_mountain_bg.png",
+    available: false,
+    comingSoon: "Spring 2026",
+  },
+  {
     slug: "granary-midway",
     title: "Granary",
     location: "Midway, UT",
@@ -29,15 +38,6 @@ const PROPERTIES = [
     meta: "Sleeps 8 • 2 Bedrooms • 2 Baths",
     image: "/listings/lowell-302/living-01.jpg",
     available: true,
-  },
-  {
-    slug: "senator",
-    title: "The Senator Collective",
-    location: "Heber Valley, UT",
-    meta: "10 Rooms • Cafe • Co-working",
-    image: "/assets/roamstead_mountain_bg.png",
-    available: false,
-    comingSoon: "Spring 2026",
   },
 ];
 
@@ -257,7 +257,7 @@ function IntroSection() {
       <div className="mk-section">
         <div className="mk-grid2">
           <div>
-            <h2 className="mk-h2">A home for those who roam</h2>
+            <h2 className="mk-h2">A Home for Those Who Roam</h2>
             <p className="mk-p">
               Roamstead is reimagining what mountain hospitality 
               can be. We're creating integrated spaces where travelers can work, 
