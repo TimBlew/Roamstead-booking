@@ -73,7 +73,7 @@ function HeroSection() {
             maxWidth: '520px',
             margin: '0 auto 12px'
           }}>
-            Own a property in Utah? Let us handle the management.
+            Own a property? Let Roamstead handle the hospitality.
           </p>
           <Link href="/property-management" className="button linkButton">
             Property owners →
