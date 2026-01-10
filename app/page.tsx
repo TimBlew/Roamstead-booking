@@ -73,7 +73,7 @@ function HeroSection() {
             maxWidth: '520px',
             margin: '0 auto 12px'
           }}>
-            Own a property? Let Roamstead handle the hospitality.
+            Turn your mountain property into a home for those who roam.
           </p>
           <Link href="/property-management" className="button linkButton">
             Property owners →
