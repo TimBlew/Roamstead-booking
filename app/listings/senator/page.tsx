@@ -334,7 +334,7 @@ export default function SenatorPage() {
             Be the first to know
           </h2>
           <p className="sectionCopy" style={{ textAlign: 'center', margin: '0 auto 24px' }}>
-            Get notified when The Senator Collective opens for bookings in Spring 2026.
+            Get notified when The Senator opens for bookings in Spring 2026.
           </p>
 
           <div className="card" style={{ padding: '28px' }}>
