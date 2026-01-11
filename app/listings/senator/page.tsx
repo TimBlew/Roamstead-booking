@@ -123,7 +123,7 @@ export default function SenatorPage() {
       {/* What's Included */}
       <section className="section">
         <div className="container">
-          <h2 className="sectionTitle">What to expect at The Senator Collective</h2>
+          <h2 className="sectionTitle">What to expect at The Senator</h2>
           <p className="sectionCopy">
             More than just a place to stay—an integrated experience for modern
             travelers and locals alike.
@@ -297,7 +297,7 @@ export default function SenatorPage() {
             {[
               { phase: 'Q4 2025', status: 'Property acquisition & transition', complete: true },
               { phase: 'Q1 2026', status: 'Light renovations & modernization', complete: false },
-              { phase: 'Spring 2026', status: 'Grand opening as Senator Collective', complete: false },
+              { phase: 'Spring 2026', status: 'Grand Re-Opening', complete: false },
               { phase: 'Ongoing', status: 'Community programming & events', complete: false }
             ].map((item) => (
               <div key={item.phase}>
@@ -384,7 +384,7 @@ export default function SenatorPage() {
             <h2 className="mk-h2Center">Can't wait to visit?</h2>
             <p className="mk-p" style={{ textAlign: 'center' }}>
               Book a stay at one of our other Wasatch region properties while we
-              prepare The Senator Collective.
+              prepare The Senator.
             </p>
             <div style={{ marginTop: '20px' }}>
               <Link href="/#properties" className="button">
