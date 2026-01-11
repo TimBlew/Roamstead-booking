@@ -11,7 +11,7 @@ const PROPERTIES = [
     title: "The Senator",
     location: "Heber Valley, UT",
     meta: "10 Rooms • Cafe • Co-working",
-    image: "/assets/roamstead_mountain_bg.png",
+    image: "/listings/senator/exterior-01.jpg",
     available: false,
     comingSoon: "Spring 2026",
   },
