@@ -98,23 +98,35 @@ export default function CompanyPage() {
             marginTop: '24px',
             maxWidth: '820px'
           }}>
+
             <div style={{
               width: '120px',
               height: '120px',
               borderRadius: '50%',
-              background: 'rgba(255,255,255,0.08)',
+              overflow: 'hidden',
               border: '1px solid rgba(255,255,255,0.14)'
-            }} />
+            }}>
+              <img 
+                src="/assets/chris-01.jpg" 
+                alt="Chris Blewitt"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            </div>
             
             <div>
               <h3 style={{ fontSize: '20px', marginBottom: '4px' }}>Chris Blewitt</h3>
               <p style={{ color: 'var(--muted)', fontSize: '14px', marginBottom: '14px' }}>
-                Founder & CEO
+                Founder
               </p>
               <p style={{ color: 'var(--muted)', lineHeight: '1.7', fontSize: '14px' }}>
-                10+ years of finance experience. Founded Roamstead in 2023 to build
-                hospitality infrastructure for the modern mountain economy. Passionate
-                mountain enthusiast with 1M+ miles on Strava.
+                Spent 10+ years in finance before trading spreadsheets for ski runs. 
+                Founded Roamstead in 2023 to build the kind of places he actually wanted 
+                to stay in. Has logged 1M+ miles on Strava (mostly uphill). Paints when 
+                he's not on the trails.
               </p>
             </div>
           </div>
@@ -287,7 +299,7 @@ export default function CompanyPage() {
               gap: '16px',
               marginTop: '24px'
             }}>
-                
+
               <div>
                 <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>
                   Property Management
