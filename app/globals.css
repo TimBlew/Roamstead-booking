@@ -801,6 +801,59 @@ ul,ol{ padding-left:18px; }
   text-align: center;
 }
 
+/* ============================
+   BACKGROUND VARIATION SYSTEM
+   ============================ */
+
+/* Slightly lighter sections - subtle variation */
+.section-variant-light {
+  background: linear-gradient(
+    to bottom, 
+    rgba(18, 22, 28, 1), 
+    rgba(15, 18, 23, 1)
+  ) !important;
+}
+
+/* Slightly darker sections */
+.section-variant-dark {
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 9, 11, 1),
+    rgba(10, 11, 13, 1)
+  ) !important;
+}
+
+/* Subtle gradient with blue accent */
+.section-variant-blue {
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(25, 55, 109, 0.25) 0%,
+    rgba(12, 14, 18, 1) 50%,
+    rgba(10, 11, 13, 1) 100%
+  ) !important;
+}
+
+/* Subtle gradient with green accent */
+.section-variant-green {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(20, 83, 45, 0.20) 0%,
+    rgba(12, 14, 18, 1) 50%,
+    rgba(10, 11, 13, 1) 100%
+  ) !important;
+}
+
+/* For mk-sectionAlt - enhanced with subtle depth */
+.mk-sectionAlt-enhanced {
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 23, 28, 0.95),
+    rgba(18, 21, 26, 0.95)
+  ) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
 @media (max-width:900px){
   .mk-grid2{ grid-template-columns:1fr; }
   .mk-cards{ grid-template-columns:1fr 1fr; }

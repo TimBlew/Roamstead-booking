@@ -23,7 +23,7 @@ export default function SenatorPage() {
       <section className="hero" style={{ minHeight: '80vh' }}>
         <div
           className="heroBg"
-          style={{ backgroundImage: "url(/assets/roamstead_mountain_bg.png)" }}
+          style={{ backgroundImage: "url(/listings/senator/heber-valley-view.jpg)" }}
           aria-hidden="true"
         />
         <div className="heroOverlay" aria-hidden="true" />
@@ -45,7 +45,7 @@ export default function SenatorPage() {
           
           <h1 className="headline">The Senator</h1>
           <p className="subhead" style={{ maxWidth: '720px' }}>
-            A historic 1902 Heber Valley landmark transformed into Roamstead's
+            A historic 1902 Heber Valley transformed into Roamstead's
             flagship Collective space—blending boutique hospitality with co-working,
             cafe culture, and community programming.
           </p>
@@ -62,7 +62,11 @@ export default function SenatorPage() {
       </section>
 
       {/* Award Recognition */}
-      <section className="section">
+      <section style={{
+        padding: '52px 0',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
+        background: 'linear-gradient(to bottom, rgba(10,10,10,0.92), rgba(10,10,10,0.98))'
+      }}>
         <div className="container">
           <div style={{
             background: 'rgba(255,255,255,0.04)',
@@ -84,22 +88,41 @@ export default function SenatorPage() {
         </div>
       </section>
 
-      {/* Property Overview */}
+      {/* Property Overview with Image */}
       <section className="mk-wrap">
         <div className="mk-section">
-          <h2 className="mk-h2">A historic property, reimagined</h2>
-          <p className="mk-p">
-            Built in 1902 as a residential mansion, The Senator has been a beloved
-            Heber Valley landmark for over a century. We're transforming this
-            award-winning B&B into a modern Collective space that honors its history
-            while serving today's travelers and local community.
-          </p>
+          <div className="mk-grid2">
+            <div>
+              <h2 className="mk-h2">A historic property, reimagined</h2>
+              <p className="mk-p">
+                Built in 1902 as a residential mansion, The Senator has been a beloved
+                Heber Valley landmark for over a century. We're transforming this
+                award-winning B&B into a modern Collective space that honors its history
+                while serving today's travelers and local community.
+              </p>
+              <p className="mk-p">
+                The property features established boutique hotel licensing with 24+ months
+                of operations, making it a turnkey opportunity for Roamstead's integrated
+                hospitality model.
+              </p>
+            </div>
+
+            <div className="mk-cardImg">
+              <Image
+                src="/listings/senator/exterior-01.jpg"
+                alt="The Senator historic building exterior"
+                width={1200}
+                height={800}
+                className="mk-img"
+              />
+            </div>
+          </div>
 
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
             gap: '14px',
-            marginTop: '24px'
+            marginTop: '32px'
           }}>
             {[
               { stat: '10', label: 'Hotel-style rooms with ensuite baths' },
@@ -120,11 +143,23 @@ export default function SenatorPage() {
         </div>
       </section>
 
-      {/* What's Included */}
-      <section className="section">
-        <div className="container">
-          <h2 className="sectionTitle">What to expect at The Senator</h2>
-          <p className="sectionCopy">
+      {/* What's Included - with subtle blue gradient */}
+      <section style={{
+        width: '100%',
+        padding: '40px 0',
+        background: 'radial-gradient(ellipse at center top, rgba(59, 130, 246, 0.05) 0%, rgba(10,10,10,0.95) 70%)',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
+        borderBottom: '1px solid rgba(255,255,255,0.08)'
+      }}>
+        <div style={{ maxWidth: 'var(--max)', margin: '0 auto', padding: '0 24px' }}>
+          <h2 className="mk-h2Center">What to expect at The Senator</h2>
+          <p style={{ 
+            textAlign: 'center', 
+            color: 'var(--muted)', 
+            maxWidth: '680px', 
+            margin: '0 auto 28px',
+            lineHeight: '1.6'
+          }}>
             More than just a place to stay—an integrated experience for modern
             travelers and locals alike.
           </p>
@@ -132,8 +167,7 @@ export default function SenatorPage() {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '16px',
-            marginTop: '24px'
+            gap: '16px'
           }}>
             <div className="card" style={{ padding: '20px' }}>
               <h3 style={{ fontSize: '18px', marginBottom: '8px' }}>
@@ -198,17 +232,17 @@ export default function SenatorPage() {
         </div>
       </section>
 
-      {/* Location */}
+      {/* Location with Map */}
       <section className="mk-wrap">
-        <div className="mk-section mk-sectionAlt">
+        <div className="mk-section">
           <div className="mk-grid2">
             <div>
               <h2 className="mk-h2">Prime location in downtown Heber</h2>
               <p className="mk-p">
-                The Senator sits at the center of Heber's new commercial district—
-                steps from town square, county parks, the historic railroad, and the
-                new event complex. A $17M renovation project is transforming the
-                surrounding area into a vibrant community hub.
+                The Senator sits at the center of Heber's new Transition Corridor 
+                commercial district—steps from town square, county parks, the historic 
+                railroad, and the new event complex. A $17M renovation project is 
+                transforming the surrounding area into a vibrant community hub.
               </p>
               <p className="mk-p">
                 Heber Valley is Utah's fastest-growing mountain destination, positioned
@@ -224,47 +258,66 @@ export default function SenatorPage() {
             </div>
 
             <div className="mk-cardImg">
-              <div style={{
-                width: '100%',
-                aspectRatio: '16/10',
-                background: 'rgba(255,255,255,0.06)',
-                borderRadius: '18px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--muted2)',
-                fontSize: '14px'
-              }}>
-                [Location map placeholder]
-              </div>
+              <Image
+                src="/listings/senator/location-map.png"
+                alt="Senator location in downtown Heber showing proximity to key community centers"
+                width={1200}
+                height={900}
+                className="mk-img"
+              />
+              <p className="mk-cap">
+                Central location connecting key community centers
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Heber Valley */}
-      <section className="section">
-        <div className="container">
-          <h2 className="sectionTitle">Why Heber Valley?</h2>
-          <p className="sectionCopy">
+      {/* Why Heber Valley with Scenic Image - subtle gradient */}
+      <section style={{
+        width: '100%',
+        padding: '40px 0',
+        background: 'linear-gradient(180deg, rgba(11,12,13,1) 0%, rgba(16,18,22,1) 50%, rgba(11,12,13,1) 100%)',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
+        borderBottom: '1px solid rgba(255,255,255,0.08)'
+      }}>
+        <div style={{ maxWidth: 'var(--max)', margin: '0 auto', padding: '0 24px' }}>
+          <h2 className="mk-h2Center">Why Heber Valley?</h2>
+          <p style={{ 
+            textAlign: 'center', 
+            color: 'var(--muted)', 
+            maxWidth: '680px', 
+            margin: '0 auto 20px',
+            lineHeight: '1.6'
+          }}>
             Utah's fastest-growing mountain destination with explosive economic
             tailwinds and unmatched 4-season recreational access.
           </p>
 
+          <div className="mk-cardImg" style={{ marginBottom: '28px' }}>
+            <Image
+              src="/listings/senator/heber-valley-view.jpg"
+              alt="Panoramic view of Heber Valley"
+              width={1400}
+              height={600}
+              className="mk-img"
+              style={{ aspectRatio: '7/3', objectFit: 'cover' }}
+            />
+          </div>
+
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '14px',
-            marginTop: '24px'
+            gap: '14px'
           }}>
             <div className="card" style={{ padding: '18px' }}>
-              <div style={{ fontSize: '32px', fontWeight: '600', marginBottom: '6px' }}>+82%</div>
+              <div style={{ fontSize: '32px', fontWeight: '600', marginBottom: '6px' }}>+104%</div>
               <p style={{ color: 'var(--muted)', lineHeight: '1.55', fontSize: '14px' }}>
                 Projected population growth by 2055—fastest in Utah
               </p>
             </div>
             <div className="card" style={{ padding: '18px' }}>
-              <div style={{ fontSize: '32px', fontWeight: '600', marginBottom: '6px' }}>2034</div>
+              <div style={{ fontSize: '32px', fontWeight: '600', marginBottom: '6px' }}>2034 Olympics</div>
               <p style={{ color: 'var(--muted)', lineHeight: '1.55', fontSize: '14px' }}>
                 Multiple Winter Olympic venues within 30 minutes
               </p>
@@ -279,11 +332,98 @@ export default function SenatorPage() {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* Year-Round Activities */}
       <section className="mk-wrap">
         <div className="mk-section">
-          <h2 className="mk-h2">Opening timeline</h2>
-          <p className="mk-p">
+          <h2 className="mk-h2Center">Year-round adventure access</h2>
+          <p style={{ 
+            textAlign: 'center', 
+            color: 'var(--muted)', 
+            maxWidth: '680px', 
+            margin: '0 auto 28px',
+            lineHeight: '1.6'
+          }}>
+            Heber Valley offers premier outdoor recreation for every season, from 
+            world-class skiing in winter to mountain biking and water sports in summer.
+          </p>
+
+          <div className="mk-grid2">
+            <div className="mk-cardImg">
+              <Image
+                src="/roamstead/winter-skiing.png"
+                alt="Premier winter skiing near Heber Valley"
+                width={1200}
+                height={675}
+                className="mk-img"
+              />
+              <p className="mk-cap">Winter: Premier skiing at nearby resorts</p>
+            </div>
+
+            <div className="mk-cardImg">
+              <Image
+                src="/roamstead/summer-fall-activities.png"
+                alt="Summer and fall mountain activities"
+                width={1200}
+                height={675}
+                className="mk-img"
+              />
+              <p className="mk-cap">
+                Summer/Fall: Mountain biking, hiking, and water sports
+              </p>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '16px',
+            marginTop: '28px'
+          }}>
+            <div className="card" style={{ padding: '18px' }}>
+              <h3 style={{ fontSize: '16px', marginBottom: '8px', fontWeight: '600' }}>
+                Winter Activities
+              </h3>
+              <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: '1.6' }}>
+                Premier skiing at nearby resorts, backcountry touring, and Nordic skiing
+              </p>
+            </div>
+            <div className="card" style={{ padding: '18px' }}>
+              <h3 style={{ fontSize: '16px', marginBottom: '8px', fontWeight: '600' }}>
+                Summer Adventures
+              </h3>
+              <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: '1.6' }}>
+                Mountain biking, hiking, paddleboarding, and scenic trail riding
+              </p>
+            </div>
+            <div className="card" style={{ padding: '18px' }}>
+              <h3 style={{ fontSize: '16px', marginBottom: '8px', fontWeight: '600' }}>
+                Local Events
+              </h3>
+              <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: '1.6' }}>
+                Rodeos, farmers markets, the historic railroad, and community festivals
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline - with subtle green gradient */}
+      <section style={{
+        width: '100%',
+        padding: '40px 0',
+        background: 'radial-gradient(ellipse at center, rgba(34, 197, 94, 0.04) 0%, rgba(10,10,10,0.95) 70%)',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
+        borderBottom: '1px solid rgba(255,255,255,0.08)'
+      }}>
+        <div style={{ maxWidth: 'var(--max)', margin: '0 auto', padding: '0 24px' }}>
+          <h2 className="mk-h2Center">Opening timeline</h2>
+          <p style={{ 
+            textAlign: 'center', 
+            color: 'var(--muted)', 
+            maxWidth: '680px', 
+            margin: '0 auto 28px',
+            lineHeight: '1.6'
+          }}>
             We're currently in the transition phase—light renovations to modernize
             offerings while preserving the property's historic character.
           </p>
@@ -292,7 +432,8 @@ export default function SenatorPage() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
             gap: '18px',
-            marginTop: '28px'
+            maxWidth: '960px',
+            margin: '0 auto'
           }}>
             {[
               { phase: 'Q4 2025', status: 'Property acquisition & transition', complete: true },
@@ -300,7 +441,7 @@ export default function SenatorPage() {
               { phase: 'Spring 2026', status: 'Grand Re-Opening', complete: false },
               { phase: 'Ongoing', status: 'Community programming & events', complete: false }
             ].map((item) => (
-              <div key={item.phase}>
+              <div key={item.phase} className="card" style={{ padding: '20px', textAlign: 'center' }}>
                 <div style={{
                   width: '36px',
                   height: '36px',
@@ -310,12 +451,12 @@ export default function SenatorPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '10px',
+                  margin: '0 auto 12px',
                   fontSize: '16px'
                 }}>
                   {item.complete ? '✓' : ''}
                 </div>
-                <h3 style={{ fontSize: '15px', marginBottom: '4px', fontWeight: '600' }}>
+                <h3 style={{ fontSize: '15px', marginBottom: '6px', fontWeight: '600' }}>
                   {item.phase}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '13.5px', lineHeight: '1.5' }}>
@@ -328,7 +469,11 @@ export default function SenatorPage() {
       </section>
 
       {/* Email Signup */}
-      <section className="section" id="notify">
+      <section style={{
+        padding: '52px 0',
+        borderTop: '1px solid rgba(255,255,255,0.08)',
+        background: 'linear-gradient(to bottom, rgba(10,10,10,0.92), rgba(10,10,10,0.98))'
+      }} id="notify">
         <div className="container" style={{ maxWidth: '640px' }}>
           <h2 className="sectionTitle" style={{ textAlign: 'center' }}>
             Be the first to know
@@ -379,7 +524,7 @@ export default function SenatorPage() {
 
       {/* CTA */}
       <section className="mk-wrap">
-        <div className="mk-section mk-sectionAlt">
+        <div className="mk-section">
           <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto' }}>
             <h2 className="mk-h2Center">Can't wait to visit?</h2>
             <p className="mk-p" style={{ textAlign: 'center' }}>
