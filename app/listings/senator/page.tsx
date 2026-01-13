@@ -321,7 +321,7 @@ export default function SenatorPage() {
               </p>
             </div>
             <div className="card" style={{ padding: "18px" }}>
-              <div style={{ fontSize: "32px", fontWeight: "600", marginBottom: "6px" }}>2034</div>
+              <div style={{ fontSize: "32px", fontWeight: "600", marginBottom: "6px" }}>2034 Olympics</div>
               <p style={{ color: "var(--muted)", lineHeight: "1.55", fontSize: "14px" }}>
                 Multiple Winter Olympic venues within 30 minutes
               </p>
