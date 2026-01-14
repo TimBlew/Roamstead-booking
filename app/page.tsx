@@ -189,6 +189,7 @@ function PropertiesSection() {
                     className="propertyImg"
                     sizes="(max-width: 900px) 82vw, 25vw"
                   />
+                  {/*}
                   {p.comingSoon && (
                     <div style={{
                       position: 'absolute',
@@ -206,6 +207,7 @@ function PropertiesSection() {
                       Coming {p.comingSoon}
                     </div>
                   )}
+                    */}
                 </div>
 
                 <div className="propertyBody">
