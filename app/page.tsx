@@ -6,15 +6,7 @@ import Link from "next/link";
 import BookingSection from "./components/BookingSection";
 
 const PROPERTIES = [
-  {
-    slug: "senator",
-    title: "The Senator",
-    location: "Heber Valley, UT",
-    meta: "10 Rooms • Cafe • Co-working",
-    image: "/listings/senator/exterior-01.jpg",
-    available: false,
-    comingSoon: "Spring 2026",
-  },
+  
   {
     slug: "granary-midway",
     title: "Granary",

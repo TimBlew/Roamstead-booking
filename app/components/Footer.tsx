@@ -17,7 +17,7 @@ export default function Footer() {
             <Link href="/listings/granary-midway" className="footerLink">Granary - Midway</Link>
             <Link href="/listings/daystar-deer-valley" className="footerLink">Daystar - Deer Valley</Link>
             <Link href="/listings/lowell-302" className="footerLink">Lowell 302 - Park City</Link>
-            <Link href="/listings/senator" className="footerLink">The Senator (Coming Soon)</Link>
+            
           </div>
 
           <div className="footerCol">
