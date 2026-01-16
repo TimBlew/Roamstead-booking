@@ -6,7 +6,14 @@ import Link from "next/link";
 import BookingSection from "./components/BookingSection";
 
 const PROPERTIES = [
-  
+  {
+  slug: "house-midway",
+  title: "Midway House",
+  location: "Midway, UT",
+  meta: "Sleeps 10 • 4 Bedrooms • 3 Baths",
+  image: "/listings/house-midway/exterior-02.jpg",
+  available: true,
+},
   {
     slug: "granary-midway",
     title: "Granary",
