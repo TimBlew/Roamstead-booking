@@ -46,7 +46,6 @@ const PROPERTIES = [
     image: "/listings/powder-room/bedroom-01.jpg",
     available: true,
   },
-
 ];
 
 function HeroSection() {
@@ -79,6 +78,7 @@ function HeroSection() {
             community, adventure, and authentic experiences.
           </span>
         </p>
+
 
         <div className="ctaRow">
           <a className="button" href="#book">
@@ -138,9 +138,50 @@ function PropertiesSection() {
     const card = row.querySelector<HTMLElement>(`[data-index="${index}"]`);
     if (!card) return;
 
-    card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    card.scrollIntoView({
+      behavior: "smooth",
+      inline: "start",
+      block: "nearest",
+    });
   };
 
+  // ✅ Mobile dots styles (restored)
+  const dotsWrapStyle = useMemo<React.CSSProperties>(
+    () => ({
+      display: "flex",
+      justifyContent: "center",
+      gap: 10,
+      marginTop: 12,
+      paddingBottom: 6,
+    }),
+    []
+  );
+
+  const dotStyle = useMemo<React.CSSProperties>(
+    () => ({
+      width: 9,
+      height: 9,
+      borderRadius: 999,
+      border: "1px solid rgba(255,255,255,0.28)",
+      background: "rgba(255,255,255,0.22)",
+      padding: 0,
+      cursor: "pointer",
+      transition:
+        "transform 160ms ease, opacity 160ms ease, background 160ms ease",
+      opacity: 0.75,
+    }),
+    []
+  );
+
+  const dotActiveStyle = useMemo<React.CSSProperties>(
+    () => ({
+      background: "rgba(255,255,255,0.92)",
+      border: "1px solid rgba(255,255,255,0.40)",
+      transform: "scale(1.25)",
+      opacity: 1,
+    }),
+    []
+  );
 
   return (
     <section className="section" id="properties">
@@ -196,15 +237,32 @@ function PropertiesSection() {
               className="carouselArrow right"
               aria-label="Scroll right"
               onClick={() =>
-                scrollToIndex(
-                  Math.min(activeIndex + 1, PROPERTIES.length - 1)
-                )
+                scrollToIndex(Math.min(activeIndex + 1, PROPERTIES.length - 1))
               }
             >
               ›
             </button>
           )}
         </div>
+
+        {/* ✅ Dots — mobile only */}
+        {isMobile && (
+          <div style={dotsWrapStyle} aria-label="Property carousel pagination">
+            {PROPERTIES.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Go to property ${i + 1} of ${PROPERTIES.length}`}
+                aria-current={i === activeIndex ? "true" : undefined}
+                onClick={() => scrollToIndex(i)}
+                style={{
+                  ...dotStyle,
+                  ...(i === activeIndex ? dotActiveStyle : null),
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -218,9 +276,10 @@ function IntroSection() {
           <div>
             <h2 className="mk-h2">A Home for Those Who Roam</h2>
             <p className="mk-p">
-              Roamstead is reimagining what mountain hospitality can be. We&apos;re creating
-              integrated spaces where travelers can work, play, connect, and truly
-              experience mountain living—all while contributing to local communities.
+              Roamstead is reimagining what mountain hospitality can be. We&apos;re
+              creating integrated spaces where travelers can work, play, connect,
+              and truly experience mountain living—all while contributing to local
+              communities.
             </p>
             <p className="mk-p">
               Our properties blend traditional vacation rentals with co-working
@@ -257,8 +316,8 @@ function CollectiveSection() {
             lineHeight: "1.6",
           }}
         >
-          The Roamstead Collective integrates multiple experiences into cohesive mountain
-          hospitality—designed for remote workers, adventure seekers, and
+          The Roamstead Collective integrates multiple experiences into cohesive
+          mountain hospitality—designed for remote workers, adventure seekers, and
           community-minded travelers.
         </p>
 
@@ -266,14 +325,16 @@ function CollectiveSection() {
           <div className="mk-card">
             <h3 className="mk-h3">Co-work + gathering</h3>
             <p className="mk-pSm">
-              Work-friendly rooms and shared spaces designed for focus and connection.
+              Work-friendly rooms and shared spaces designed for focus and
+              connection.
             </p>
           </div>
 
           <div className="mk-card">
             <h3 className="mk-h3">Cafe + coffee bar</h3>
             <p className="mk-pSm">
-              A comfortable third space for locals and guests to fuel up and hang out.
+              A comfortable third space for locals and guests to fuel up and hang
+              out.
             </p>
           </div>
 

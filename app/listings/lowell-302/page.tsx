@@ -76,7 +76,7 @@ export default function Lowell302ParkCityPage() {
                   ← Back to home
                 </Link>
 
-                <h1 className="listingTitle">Lowell 302</h1>
+                <h1 className="listingTitle">The Lowell</h1>
                 <p className="listingLocation">Park City Mountain Resort, Park City, UT</p>
 
                 <div className="listingStatsRow">

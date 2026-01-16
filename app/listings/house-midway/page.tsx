@@ -3,7 +3,7 @@ import Link from "next/link";
 import BookingSection from "@/app/components/BookingSection";
 
 const LISTING = {
-  title: "Midway House",
+  title: "Hygge House",
   subtitle: "Spacious 4BR mountain home w/ sauna, office, gym + gear garage",
   location: "Midway, UT",
   meta: "Sleeps 10 • 4 Bedrooms • 3 Baths • Sauna • Office • Gear Garage/Gym",
