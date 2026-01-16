@@ -83,7 +83,7 @@ export default function Header() {
               className="mobileNavLink"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Properties
+              Our Properties
             </Link>
 
             {/*
