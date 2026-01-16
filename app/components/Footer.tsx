@@ -24,7 +24,7 @@ export default function Footer() {
             <Link href="/listings/lowell-302" className="footerLink">
               The Lowell
             </Link>
-            <Link href="/listings/heber-valley-house" className="footerLink">
+            <Link href="/listings/house-midway" className="footerLink">
               Midway House
             </Link>
             <Link href="/listings/powder-room" className="footerLink">
