@@ -16,17 +16,21 @@ export default function Footer() {
           <div className="footerCol">
             <h4 className="footerHeading">Properties</h4>
             <Link href="/listings/granary-midway" className="footerLink">
-              Granary - Midway
+              Hygge House
             </Link>
             <Link href="/listings/daystar-deer-valley" className="footerLink">
-              Daystar - Deer Valley
+              Daystar 
             </Link>
             <Link href="/listings/lowell-302" className="footerLink">
-              Lowell 302 - Park City
+              The Lowell 
             </Link>
             <Link href="/listings/heber-valley-house" className="footerLink">
               Midway House
             </Link>
+            <Link href="/listings/powder-room" className="footerLink">
+              Powder Room 
+            </Link>
+
           </div>
 
           <div className="footerCol">

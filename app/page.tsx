@@ -38,6 +38,15 @@ const PROPERTIES = [
     image: "/listings/lowell-302/living-01.jpg",
     available: true,
   },
+  {
+    slug: "powder-room",
+    title: "Powder Room",
+    location: "Park City, UT",
+    meta: "Sleeps 4 • 1 Bedroom • 1 Bath",
+    image: "/listings/powder-room/bedroom-01.jpg",
+    available: true,
+  },
+
 ];
 
 function HeroSection() {
@@ -62,7 +71,6 @@ function HeroSection() {
 
         <h1 className="headline">Providing more space to roam</h1>
 
-        {/* Subheader — forced 2-line layout */}
         <p className="subhead">
           <span className="subheadLine1">
             Modern mountain hospitality for travelers who value
@@ -71,7 +79,6 @@ function HeroSection() {
             community, adventure, and authentic experiences.
           </span>
         </p>
-
 
         <div className="ctaRow">
           <a className="button" href="#book">
@@ -134,41 +141,6 @@ function PropertiesSection() {
     card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
   };
 
-  const dotsWrapStyle = useMemo<React.CSSProperties>(
-    () => ({
-      display: "flex",
-      justifyContent: "center",
-      gap: 10,
-      marginTop: 12,
-      paddingBottom: 6,
-    }),
-    []
-  );
-
-  const dotStyle = useMemo<React.CSSProperties>(
-    () => ({
-      width: 9,
-      height: 9,
-      borderRadius: 999,
-      border: "1px solid rgba(255,255,255,0.28)",
-      background: "rgba(255,255,255,0.22)",
-      padding: 0,
-      cursor: "pointer",
-      transition: "transform 160ms ease, opacity 160ms ease, background 160ms ease",
-      opacity: 0.75,
-    }),
-    []
-  );
-
-  const dotActiveStyle = useMemo<React.CSSProperties>(
-    () => ({
-      background: "rgba(255,255,255,0.92)",
-      border: "1px solid rgba(255,255,255,0.40)",
-      transform: "scale(1.25)",
-      opacity: 1,
-    }),
-    []
-  );
 
   return (
     <section className="section" id="properties">
@@ -177,6 +149,17 @@ function PropertiesSection() {
         <p className="sectionCopy">Browse our stays and book directly.</p>
 
         <div className="propertyCarousel">
+          {/* Left arrow — desktop only */}
+          {!isMobile && (
+            <button
+              className="carouselArrow left"
+              aria-label="Scroll left"
+              onClick={() => scrollToIndex(Math.max(activeIndex - 1, 0))}
+            >
+              ‹
+            </button>
+          )}
+
           <div className="propertyRow" id="propertyRow">
             {PROPERTIES.map((p, i) => (
               <Link
@@ -191,7 +174,7 @@ function PropertiesSection() {
                     alt={p.title}
                     fill
                     className="propertyImg"
-                    sizes="(max-width: 900px) 82vw, 25vw"
+                    sizes="(max-width: 900px) 82vw, 420px"
                   />
                 </div>
 
@@ -207,22 +190,19 @@ function PropertiesSection() {
             ))}
           </div>
 
-          {isMobile && (
-            <div style={dotsWrapStyle} aria-label="Property carousel pagination">
-              {PROPERTIES.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  aria-label={`Go to property ${i + 1} of ${PROPERTIES.length}`}
-                  aria-current={i === activeIndex ? "true" : undefined}
-                  onClick={() => scrollToIndex(i)}
-                  style={{
-                    ...dotStyle,
-                    ...(i === activeIndex ? dotActiveStyle : null),
-                  }}
-                />
-              ))}
-            </div>
+          {/* Right arrow — desktop only */}
+          {!isMobile && (
+            <button
+              className="carouselArrow right"
+              aria-label="Scroll right"
+              onClick={() =>
+                scrollToIndex(
+                  Math.min(activeIndex + 1, PROPERTIES.length - 1)
+                )
+              }
+            >
+              ›
+            </button>
           )}
         </div>
       </div>

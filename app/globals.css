@@ -196,11 +196,14 @@ ul,ol{ padding-left:18px; }
   margin-top:6px;
 }
 
-/* propertyRow (desktop grid, mobile horizontal scroll w/ peek) */
+/* propertyRow — horizontal scroll on ALL screen sizes */
 .propertyRow{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
+  display:flex;
   gap:16px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x mandatory;
+  padding:6px 2px 10px;
   margin-top:6px;
 
   /* Hide scrollbar (still scrollable) */
@@ -209,6 +212,15 @@ ul,ol{ padding-left:18px; }
 .propertyRow::-webkit-scrollbar{
   display:none; /* Chrome/Safari */
 }
+
+/* Desktop card sizing */
+.propertyRow .propertyCard{
+  flex:0 0 420px;
+  max-width:420px;
+  scroll-snap-align:start;
+}
+
+
 
 .propertyCard{
   border:1px solid rgba(255,255,255,0.10);
@@ -877,20 +889,10 @@ ul,ol{ padding-left:18px; }
   .mk-cards{ grid-template-columns:1fr 1fr; }
   .propertyGrid{ grid-template-columns:1fr; }
 
-  .propertyRow{
-    display:flex;
-    gap:14px;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scroll-snap-type:x mandatory;
-    padding:6px 2px 10px;
-    margin-top:6px;
-  }
-
+  
   .propertyRow .propertyCard{
-    flex:0 0 82%;
-    max-width:82%;
-    scroll-snap-align:start;
+  flex:0 0 82%;
+  max-width:82%;
   }
 
   .listingPage .listingHeroInner{ position:relative; z-index:2; padding:18px 0; }
