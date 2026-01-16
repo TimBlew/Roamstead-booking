@@ -98,22 +98,17 @@ ul,ol{ padding-left:18px; }
   font-weight:400;
 }
 
-/* Subhead line spans:
-   - Mobile: allow natural wrapping (prevents cutoff)
-   - Desktop: force the intended 2-line layout */
-  .subheadLine1,
-  .subheadLine2{
-    display:inline;
-    white-space:normal;
-  }
+/* Force hero subhead to always break into two lines:
+   line 2 starts at "community, adventure, and authentic experiences." */
+.subheadLine2{
+  display:block;
+  white-space:nowrap;
+}
 
-  @media (min-width:901px){
-    .subheadLine1,
-    .subheadLine2{
-      display:block;
-      white-space:nowrap; /* safe on desktop width, keeps the clean 2-line look */
-    }
-  }
+/* Safety: allow wrap on very small screens to avoid overflow */
+@media (max-width:360px){
+  .subheadLine2{ white-space:normal; }
+}
 
 
 .ctaRow{
