@@ -72,7 +72,7 @@ function HeroSection() {
 
         <p className="subhead">
           <span className="subheadLine1">
-            Modern mountain hospitality for travelers who value
+            Modern mountain hospitality for travelers who value{" "}
           </span>
           <span className="subheadLine2">
             community, adventure, and authentic experiences.
