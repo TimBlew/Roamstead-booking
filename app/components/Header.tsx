@@ -22,23 +22,41 @@ export default function Header() {
         </Link>
 
         <nav className="desktopNav">
-          <Link href="/#properties" className="navLink">Properties</Link>
+          <Link href="/#properties" className="navLink">
+            Properties
+          </Link>
           {/* <Link href="/the-collective" className="navLink">The Collective</Link> */}
           {/* <Link href="/about" className="navLink">About</Link> */}
-          <Link href="/property-management" className="navLink">Property Owners</Link>
+
+          {/*
+          <Link href="/property-management" className="navLink">
+            Property Owners
+          </Link>
+          */}
         </nav>
 
         <div className="headerActions">
-          <Link href="/#book" className="button" style={{ fontSize: '13px', padding: '10px 16px' }}>
+          <Link
+            href="/#book"
+            className="button"
+            style={{ fontSize: "13px", padding: "10px 16px" }}
+          >
             Book Now
           </Link>
-          
-          <button 
+
+          <button
             className="mobileMenuButton"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               {mobileMenuOpen ? (
                 <>
                   <line x1="18" y1="6" x2="6" y2="18" />
@@ -60,19 +78,29 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="mobileMenu">
           <div className="mobileMenuInner">
-            <Link href="/#properties" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
+            <Link
+              href="/#properties"
+              className="mobileNavLink"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Properties
             </Link>
-            {/* <Link href="/the-collective" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
-              The Collective
-            </Link>
-            <Link href="/about" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
-              About
-            </Link> */}
-            <Link href="/property-management" className="mobileNavLink" onClick={() => setMobileMenuOpen(false)}>
+
+            {/*
+            <Link
+              href="/property-management"
+              className="mobileNavLink"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Property Owners
             </Link>
-            <Link href="/#book" className="mobileNavLink mobileNavCta" onClick={() => setMobileMenuOpen(false)}>
+            */}
+
+            <Link
+              href="/#book"
+              className="mobileNavLink mobileNavCta"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               Book Now
             </Link>
           </div>

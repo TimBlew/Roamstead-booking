@@ -7,13 +7,13 @@ import BookingSection from "./components/BookingSection";
 
 const PROPERTIES = [
   {
-  slug: "house-midway",
-  title: "Midway House",
-  location: "Midway, UT",
-  meta: "Sleeps 10 • 4 Bedrooms • 3 Baths",
-  image: "/listings/house-midway/exterior-02.jpg",
-  available: true,
-},
+    slug: "house-midway",
+    title: "Midway House",
+    location: "Midway, UT",
+    meta: "Sleeps 10 • 4 Bedrooms • 3 Baths",
+    image: "/listings/house-midway/exterior-02.jpg",
+    available: true,
+  },
   {
     slug: "granary-midway",
     title: "Granary",
@@ -62,7 +62,7 @@ function HeroSection() {
 
         <h1 className="headline">Providing more space to roam</h1>
         <p className="subhead">
-          Modern mountain hospitality for travelers who value community, 
+          Modern mountain hospitality for travelers who value community,
           adventure, and authentic experiences.
         </p>
 
@@ -95,17 +95,14 @@ function PropertiesSection() {
     const row = document.getElementById("propertyRow");
     if (!row) return;
 
-    const cards = Array.from(
-      row.querySelectorAll<HTMLElement>("[data-index]")
-    );
+    const cards = Array.from(row.querySelectorAll<HTMLElement>("[data-index]"));
 
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort(
-            (a, b) =>
-              (b.intersectionRatio || 0) - (a.intersectionRatio || 0)
+            (a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0)
           )[0];
 
         if (!visible) return;
@@ -113,10 +110,7 @@ function PropertiesSection() {
         const idx = Number((visible.target as HTMLElement).dataset.index);
         if (!Number.isNaN(idx)) setActiveIndex(idx);
       },
-      {
-        root: row,
-        threshold: [0.55, 0.6, 0.65, 0.7],
-      }
+      { root: row, threshold: [0.55, 0.6, 0.65, 0.7] }
     );
 
     cards.forEach((c) => observer.observe(c));
@@ -130,11 +124,7 @@ function PropertiesSection() {
     const card = row.querySelector<HTMLElement>(`[data-index="${index}"]`);
     if (!card) return;
 
-    card.scrollIntoView({
-      behavior: "smooth",
-      inline: "start",
-      block: "nearest",
-    });
+    card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
   };
 
   const dotsWrapStyle = useMemo<React.CSSProperties>(
@@ -196,25 +186,6 @@ function PropertiesSection() {
                     className="propertyImg"
                     sizes="(max-width: 900px) 82vw, 25vw"
                   />
-                  {/*}
-                  {p.comingSoon && (
-                    <div style={{
-                      position: 'absolute',
-                      top: '12px',
-                      right: '12px',
-                      padding: '6px 12px',
-                      background: 'rgba(59, 130, 246, 0.95)',
-                      backdropFilter: 'blur(10px)',
-                      borderRadius: '8px',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      color: 'white',
-                      border: '1px solid rgba(255,255,255,0.20)'
-                    }}>
-                      Coming {p.comingSoon}
-                    </div>
-                  )}
-                    */}
                 </div>
 
                 <div className="propertyBody">
@@ -222,7 +193,7 @@ function PropertiesSection() {
                   <p className="propertyLocation">{p.location}</p>
                   <p className="propertyMeta">{p.meta}</p>
                   <span className="propertyCta">
-                    {p.available ? 'View details →' : 'Learn more →'}
+                    {p.available ? "View details →" : "Learn more →"}
                   </span>
                 </div>
               </Link>
@@ -260,25 +231,16 @@ function IntroSection() {
           <div>
             <h2 className="mk-h2">A Home for Those Who Roam</h2>
             <p className="mk-p">
-              Roamstead is reimagining what mountain hospitality 
-              can be. We're creating integrated spaces where travelers can work, 
-              play, connect, and truly experience mountain living—all while 
-              contributing to local communities.
+              Roamstead is reimagining what mountain hospitality can be. We&apos;re creating
+              integrated spaces where travelers can work, play, connect, and truly
+              experience mountain living—all while contributing to local communities.
             </p>
             <p className="mk-p">
-              Our properties blend traditional vacation rentals with co-working 
-              spaces, cafes, wellness amenities, and community programming. 
-              It's hospitality built for the 35M Americans now working remotely 
+              Our properties blend traditional vacation rentals with co-working
+              spaces, cafes, wellness amenities, and community programming. It&apos;s
+              hospitality built for the millions of Americans now working remotely
               and seeking authentic mountain experiences.
             </p>
-            {/* <div style={{ display: 'flex', gap: '12px', marginTop: '20px', flexWrap: 'wrap' }}>
-              <Link href="/about" className="button linkButton">
-                About Roamstead →
-              </Link>
-              <Link href="/the-collective" className="button linkButton">
-                The Collective Model →
-              </Link>
-            </div> */}
           </div>
 
           <div className="mk-cardImg">
@@ -301,39 +263,42 @@ function CollectiveSection() {
     <section className="mk-wrap">
       <div className="mk-section mk-sectionAlt">
         <h2 className="mk-h2Center">Built for the modern traveler</h2>
-        <p style={{ 
-          textAlign: 'center', 
-          color: 'var(--muted)', 
-          maxWidth: '680px', 
-          margin: '0 auto 28px',
-          lineHeight: '1.6'
-        }}>
-          The Roamstead Collective integrates multiple experiences into 
-          cohesive mountain hospitality—designed for remote workers, adventure 
-          seekers, and community-minded travelers.
+        <p
+          style={{
+            textAlign: "center",
+            color: "var(--muted)",
+            maxWidth: "680px",
+            margin: "0 auto 28px",
+            lineHeight: "1.6",
+          }}
+        >
+          The Roamstead Collective integrates multiple experiences into cohesive mountain
+          hospitality—designed for remote workers, adventure seekers, and
+          community-minded travelers.
         </p>
 
         <div className="mk-cards">
           <div className="mk-card">
             <h3 className="mk-h3">Co-work + gathering</h3>
             <p className="mk-pSm">
-              Work-friendly rooms and shared spaces designed for focus and
-              connection.
+              Work-friendly rooms and shared spaces designed for focus and connection.
             </p>
           </div>
+
           <div className="mk-card">
             <h3 className="mk-h3">Cafe + coffee bar</h3>
             <p className="mk-pSm">
-              A comfortable third space for locals and guests to fuel up and hang
-              out.
+              A comfortable third space for locals and guests to fuel up and hang out.
             </p>
           </div>
+
           <div className="mk-card">
             <h3 className="mk-h3">Wellness + recovery</h3>
             <p className="mk-pSm">
               Health-forward amenities to reset after big days in the mountains.
             </p>
           </div>
+
           <div className="mk-card">
             <h3 className="mk-h3">Community events</h3>
             <p className="mk-pSm">
@@ -341,12 +306,6 @@ function CollectiveSection() {
             </p>
           </div>
         </div>
-
-        {/* <div style={{ textAlign: 'center', marginTop: '28px' }}>
-          <Link href="/the-collective" className="button linkButton">
-            Learn about The Collective model →
-          </Link>
-        </div> */}
       </div>
     </section>
   );
@@ -357,6 +316,7 @@ function AdventureSection() {
     <section className="mk-wrap">
       <div className="mk-section" id="experiences">
         <h2 className="mk-h2Center">Four seasons of adventure</h2>
+
         <div className="mk-grid2">
           <div className="mk-cardImg">
             <Image
@@ -387,15 +347,15 @@ function AdventureSection() {
   );
 }
 
+/* PROPERTY MANAGEMENT CTA — COMMENTED OUT
 function PropertyOwnersCTA() {
   return (
-    <section className="section" style={{ background: 'rgba(255,255,255,0.02)' }}>
-      <div className="container" style={{ textAlign: 'center', maxWidth: '720px' }}>
+    <section className="section" style={{ background: "rgba(255,255,255,0.02)" }}>
+      <div className="container" style={{ textAlign: "center", maxWidth: "720px" }}>
         <h2 className="sectionTitle">Property owners</h2>
-        <p className="sectionCopy" style={{ margin: '0 auto 20px' }}>
-          Turn your mountain property into a home for those who roam. 
-          We bring hospitality expertise, dynamic pricing, and multi-channel 
-          marketing to maximize your property's revenue potential.
+        <p className="sectionCopy" style={{ margin: "0 auto 20px" }}>
+          Turn your mountain property into a home for those who roam. We bring hospitality expertise,
+          dynamic pricing, and multi-channel marketing to maximize your property's revenue potential.
         </p>
         <Link href="/property-management" className="button">
           Learn about property management →
@@ -404,6 +364,7 @@ function PropertyOwnersCTA() {
     </section>
   );
 }
+*/
 
 export default function Page() {
   return (
@@ -413,7 +374,8 @@ export default function Page() {
       <IntroSection />
       <CollectiveSection />
       <AdventureSection />
-      <PropertyOwnersCTA />
+
+      {/* <PropertyOwnersCTA /> */}
 
       <section className="section" id="book">
         <div className="container">
