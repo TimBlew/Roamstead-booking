@@ -98,20 +98,28 @@ ul,ol{ padding-left:18px; }
   font-weight:400;
 }
 
-/* Force hero subhead to be exactly two lines (using the two spans) */
+/* Force hero subhead to be exactly two lines (the spans define the lines) */
 .subheadLine1,
 .subheadLine2{
   display:block;
   white-space:nowrap;
 }
 
-/* Safety: allow wrapping on small screens to avoid clipping */
+/* Reduce risk of overflow without changing the 2-line structure */
 @media (max-width:520px){
+  .subhead{
+    max-width:92vw;
+  }
+}
+
+/* Safety: only on ultra-small screens allow wrapping instead of clipping */
+@media (max-width:360px){
   .subheadLine1,
   .subheadLine2{
     white-space:normal;
   }
 }
+
 
 
 .ctaRow{

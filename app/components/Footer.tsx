@@ -30,7 +30,7 @@ export default function Footer() {
             <Link href="/listings/powder-room" className="footerLink">
               Powder Room 
             </Link>
-
+          
           </div>
 
           <div className="footerCol">
