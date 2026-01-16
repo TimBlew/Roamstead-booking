@@ -98,16 +98,21 @@ ul,ol{ padding-left:18px; }
   font-weight:400;
 }
 
-/* Force hero subhead to always break into two lines:
-   line 2 starts at "community, adventure, and authentic experiences." */
+/* HERO SUBHEAD LINE CONTROL
+   Mobile: allow natural wrapping (prevents 3-line "value" orphan caused by display:block)
+   Desktop: force exactly two lines with line 2 starting at "community..." */
+.subheadLine1,
 .subheadLine2{
-  display:block;
-  white-space:nowrap;
+  display:inline !important;
+  white-space:normal !important;
 }
 
-/* Safety: allow wrap on very small screens to avoid overflow */
-@media (max-width:360px){
-  .subheadLine2{ white-space:normal; }
+@media (min-width:901px){
+  .subheadLine1,
+  .subheadLine2{
+    display:block !important;
+    white-space:nowrap !important;
+  }
 }
 
 

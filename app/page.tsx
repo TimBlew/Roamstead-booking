@@ -77,6 +77,7 @@ function HeroSection() {
           <span className="subheadLine2">
             community, adventure, and authentic experiences.
           </span>
+
         </p>
 
 
