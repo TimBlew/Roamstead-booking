@@ -356,20 +356,8 @@ function IntegratedOfferingSection() {
       <div className="mk-section mk-sectionAlt">
         <h2 className="mk-h2Center">Uniting Mountain Living with Modern Hospitality</h2>
 
-        {/* ✅ Added/updated subtext to be easier to read */}
-        <p
-          style={{
-            textAlign: "center",
-            color: "rgba(255,255,255,0.72)",
-            maxWidth: "780px",
-            margin: "0 auto 22px",
-            lineHeight: "1.75",
-            fontSize: "15px",
-          }}
-        >
-          Uniting mountain living with modern hospitality—designed for locals,
-          members, and guests who want more than a place to sleep.
-        </p>
+      
+     
 
         <div className="ioGrid">
           {CARDS.map((c) => (
