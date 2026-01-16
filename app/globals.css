@@ -98,17 +98,18 @@ ul,ol{ padding-left:18px; }
   font-weight:400;
 }
 
-/* Hero subhead: keep 2-line structure but prevent clipping on small screens */
+/* Force hero subhead to be exactly two lines (using the two spans) */
 .subheadLine1,
 .subheadLine2{
   display:block;
-  white-space:normal; /* default = wrap to avoid clipping */
+  white-space:nowrap;
 }
 
-/* On larger screens, keep line 2 together for a clean 2-line look */
-@media (min-width:521px){
+/* Safety: allow wrapping on small screens to avoid clipping */
+@media (max-width:520px){
+  .subheadLine1,
   .subheadLine2{
-    white-space:nowrap;
+    white-space:normal;
   }
 }
 
