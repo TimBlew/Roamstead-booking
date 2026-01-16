@@ -98,8 +98,6 @@ ul,ol{ padding-left:18px; }
   font-weight:400;
 }
 
-/* Force hero subhead to always break into two lines:
-   line 2 starts at "community, adventure, and authentic experiences." */
 /* Force hero subhead to always be exactly two lines */
 .subheadLine1,
 .subheadLine2{
@@ -114,7 +112,6 @@ ul,ol{ padding-left:18px; }
     white-space:normal;
   }
 }
-
 
 .ctaRow{
   display:inline-flex;
@@ -220,7 +217,54 @@ ul,ol{ padding-left:18px; }
   scroll-snap-align:start;
 }
 
+/* ============================
+   PROPERTY CAROUSEL ARROWS (DESKTOP)
+   ============================ */
 
+.propertyCarousel{
+  position:relative;
+}
+
+.carouselArrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:3;
+  width:40px;
+  height:40px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.18);
+  background:rgba(0,0,0,0.65);
+  color:white;
+  font-size:26px;
+  font-weight:500;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 28px rgba(0,0,0,0.45);
+  transition:background 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.carouselArrow:hover{
+  background:rgba(0,0,0,0.85);
+  transform:translateY(-50%) scale(1.05);
+}
+
+.carouselArrow.left{
+  left:-8px;
+}
+
+.carouselArrow.right{
+  right:-8px;
+}
+
+/* Hide arrows on mobile */
+@media (max-width:900px){
+  .carouselArrow{
+    display:none;
+  }
+}
 
 .propertyCard{
   border:1px solid rgba(255,255,255,0.10);
@@ -889,10 +933,9 @@ ul,ol{ padding-left:18px; }
   .mk-cards{ grid-template-columns:1fr 1fr; }
   .propertyGrid{ grid-template-columns:1fr; }
 
-  
   .propertyRow .propertyCard{
-  flex:0 0 82%;
-  max-width:82%;
+    flex:0 0 82%;
+    max-width:82%;
   }
 
   .listingPage .listingHeroInner{ position:relative; z-index:2; padding:18px 0; }
