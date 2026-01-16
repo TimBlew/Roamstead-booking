@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import BookingSection from "./components/BookingSection";
@@ -77,9 +77,7 @@ function HeroSection() {
           <span className="subheadLine2">
             community, adventure, and authentic experiences.
           </span>
-
         </p>
-
 
         <div className="ctaRow">
           <a className="button" href="#book">
@@ -98,6 +96,11 @@ function PropertiesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  const rowRef = useRef<HTMLDivElement | null>(null);
+  const cardsRef = useRef<HTMLElement[]>([]);
+  const snapTypeRef = useRef<string>("x proximity");
+  const restoreSnapTimerRef = useRef<number | null>(null);
+
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)");
     const apply = () => setIsMobile(mq.matches);
@@ -106,47 +109,93 @@ function PropertiesSection() {
     return () => mq.removeEventListener?.("change", apply);
   }, []);
 
-  useEffect(() => {
-    const row = document.getElementById("propertyRow");
-    if (!row) return;
+  const getNearestIndex = () => {
+    const row = rowRef.current;
+    const cards = cardsRef.current;
+    if (!row || !cards.length) return 0;
 
-    const cards = Array.from(row.querySelectorAll<HTMLElement>("[data-index]"));
+    const rowStyle = window.getComputedStyle(row);
+    const padLeft = parseFloat(rowStyle.paddingLeft || "0") || 0;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort(
-            (a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0)
-          )[0];
+    // "content edge" inside the scroller
+    const target = row.scrollLeft + padLeft;
 
-        if (!visible) return;
+    let bestIdx = 0;
+    let bestDist = Number.POSITIVE_INFINITY;
 
-        const idx = Number((visible.target as HTMLElement).dataset.index);
-        if (!Number.isNaN(idx)) setActiveIndex(idx);
-      },
-      { root: row, threshold: [0.55, 0.6, 0.65, 0.7] }
-    );
+    for (let i = 0; i < cards.length; i++) {
+      const c = cards[i];
+      if (!c) continue;
+      const dist = Math.abs(c.offsetLeft - target);
+      if (dist < bestDist) {
+        bestDist = dist;
+        bestIdx = i;
+      }
+    }
 
-    cards.forEach((c) => observer.observe(c));
-    return () => observer.disconnect();
-  }, []);
-
-  const scrollToIndex = (index: number) => {
-    const row = document.getElementById("propertyRow");
-    if (!row) return;
-
-    const card = row.querySelector<HTMLElement>(`[data-index="${index}"]`);
-    if (!card) return;
-
-    card.scrollIntoView({
-      behavior: "smooth",
-      inline: "start",
-      block: "nearest",
-    });
+    return bestIdx;
   };
 
-  // ✅ Mobile dots styles (restored)
+  const scrollToIndex = (index: number) => {
+    const row = rowRef.current;
+    const card = cardsRef.current[index];
+    if (!row || !card) return;
+
+    const rowStyle = window.getComputedStyle(row);
+    const padLeft = parseFloat(rowStyle.paddingLeft || "0") || 0;
+
+    const desiredLeft = card.offsetLeft - padLeft;
+    const maxLeft = row.scrollWidth - row.clientWidth;
+    const nextLeft = Math.max(0, Math.min(desiredLeft, maxLeft));
+
+    // Temporarily disable snapping during programmatic scroll to prevent jumpiness
+    const prevSnap = row.style.scrollSnapType || "";
+    row.style.scrollSnapType = "none";
+
+    if (restoreSnapTimerRef.current) {
+      window.clearTimeout(restoreSnapTimerRef.current);
+      restoreSnapTimerRef.current = null;
+    }
+
+    row.scrollTo({ left: nextLeft, behavior: "smooth" });
+
+    restoreSnapTimerRef.current = window.setTimeout(() => {
+      row.style.scrollSnapType = prevSnap || snapTypeRef.current;
+      restoreSnapTimerRef.current = null;
+    }, 380);
+  };
+
+  // Keep activeIndex synced to scroll position (more reliable than IntersectionObserver for horizontal snap)
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+
+    snapTypeRef.current =
+      window.getComputedStyle(row).scrollSnapType || "x proximity";
+
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        setActiveIndex(getNearestIndex());
+      });
+    };
+
+    row.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      cancelAnimationFrame(raf);
+      row.removeEventListener("scroll", onScroll);
+      if (restoreSnapTimerRef.current) {
+        window.clearTimeout(restoreSnapTimerRef.current);
+        restoreSnapTimerRef.current = null;
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ✅ Mobile dots styles
   const dotsWrapStyle = useMemo<React.CSSProperties>(
     () => ({
       display: "flex",
@@ -196,19 +245,25 @@ function PropertiesSection() {
             <button
               className="carouselArrow left"
               aria-label="Scroll left"
-              onClick={() => scrollToIndex(Math.max(activeIndex - 1, 0))}
+              onClick={() => {
+                const idx = getNearestIndex();
+                scrollToIndex(Math.max(idx - 1, 0));
+              }}
             >
               ‹
             </button>
           )}
 
-          <div className="propertyRow" id="propertyRow">
+          <div className="propertyRow" id="propertyRow" ref={rowRef}>
             {PROPERTIES.map((p, i) => (
               <Link
                 key={p.slug}
                 href={`/listings/${p.slug}`}
                 className="propertyCard"
                 data-index={i}
+                ref={(el) => {
+                  if (el) cardsRef.current[i] = el;
+                }}
               >
                 <div className="propertyImage">
                   <Image
@@ -237,9 +292,10 @@ function PropertiesSection() {
             <button
               className="carouselArrow right"
               aria-label="Scroll right"
-              onClick={() =>
-                scrollToIndex(Math.min(activeIndex + 1, PROPERTIES.length - 1))
-              }
+              onClick={() => {
+                const idx = getNearestIndex();
+                scrollToIndex(Math.min(idx + 1, PROPERTIES.length - 1));
+              }}
             >
               ›
             </button>
