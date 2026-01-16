@@ -23,7 +23,7 @@ export default function Header() {
 
         <nav className="desktopNav">
           <Link href="/#properties" className="navLink">
-            Properties
+            Our Properties
           </Link>
           {/* <Link href="/the-collective" className="navLink">The Collective</Link> */}
           {/* <Link href="/about" className="navLink">About</Link> */}

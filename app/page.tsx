@@ -8,7 +8,7 @@ import BookingSection from "./components/BookingSection";
 const PROPERTIES = [
   {
     slug: "house-midway",
-    title: "Midway House",
+    title: "Hygge House",
     location: "Midway, UT",
     meta: "Sleeps 10 • 4 Bedrooms • 3 Baths",
     image: "/listings/house-midway/exterior-02.jpg",
@@ -32,7 +32,7 @@ const PROPERTIES = [
   },
   {
     slug: "lowell-302",
-    title: "Lowell 302",
+    title: "The Lowell",
     location: "Park City, UT",
     meta: "Sleeps 8 • 2 Bedrooms • 2 Baths",
     image: "/listings/lowell-302/living-01.jpg",
@@ -61,10 +61,17 @@ function HeroSection() {
         />
 
         <h1 className="headline">Providing more space to roam</h1>
+
+        {/* Subheader — forced 2-line layout */}
         <p className="subhead">
-          Modern mountain hospitality for travelers who value community,
-          adventure, and authentic experiences.
+          <span className="subheadLine1">
+            Modern mountain hospitality for travelers who value
+          </span>
+          <span className="subheadLine2">
+            community, adventure, and authentic experiences.
+          </span>
         </p>
+
 
         <div className="ctaRow">
           <a className="button" href="#book">
@@ -166,7 +173,7 @@ function PropertiesSection() {
   return (
     <section className="section" id="properties">
       <div className="container">
-        <h2 className="sectionTitle">Properties</h2>
+        <h2 className="sectionTitle">Homes for Those Who Roam</h2>
         <p className="sectionCopy">Browse our stays and book directly.</p>
 
         <div className="propertyCarousel">
@@ -237,9 +244,7 @@ function IntroSection() {
             </p>
             <p className="mk-p">
               Our properties blend traditional vacation rentals with co-working
-              spaces, cafes, wellness amenities, and community programming. It&apos;s
-              hospitality built for the millions of Americans now working remotely
-              and seeking authentic mountain experiences.
+              spaces, cafes, wellness amenities, and community programming.
             </p>
           </div>
 
@@ -347,25 +352,6 @@ function AdventureSection() {
   );
 }
 
-/* PROPERTY MANAGEMENT CTA — COMMENTED OUT
-function PropertyOwnersCTA() {
-  return (
-    <section className="section" style={{ background: "rgba(255,255,255,0.02)" }}>
-      <div className="container" style={{ textAlign: "center", maxWidth: "720px" }}>
-        <h2 className="sectionTitle">Property owners</h2>
-        <p className="sectionCopy" style={{ margin: "0 auto 20px" }}>
-          Turn your mountain property into a home for those who roam. We bring hospitality expertise,
-          dynamic pricing, and multi-channel marketing to maximize your property's revenue potential.
-        </p>
-        <Link href="/property-management" className="button">
-          Learn about property management →
-        </Link>
-      </div>
-    </section>
-  );
-}
-*/
-
 export default function Page() {
   return (
     <main>
@@ -374,8 +360,6 @@ export default function Page() {
       <IntroSection />
       <CollectiveSection />
       <AdventureSection />
-
-      {/* <PropertyOwnersCTA /> */}
 
       <section className="section" id="book">
         <div className="container">

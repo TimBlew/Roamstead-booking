@@ -98,6 +98,24 @@ ul,ol{ padding-left:18px; }
   font-weight:400;
 }
 
+/* Force hero subhead to always break into two lines:
+   line 2 starts at "community, adventure, and authentic experiences." */
+/* Force hero subhead to always be exactly two lines */
+.subheadLine1,
+.subheadLine2{
+  display:block;
+  white-space:nowrap;
+}
+
+/* Safety: on very small screens, allow wrap instead of overflow */
+@media (max-width:360px){
+  .subheadLine1,
+  .subheadLine2{
+    white-space:normal;
+  }
+}
+
+
 .ctaRow{
   display:inline-flex;
   gap:10px;
