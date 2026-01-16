@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="footerCol">
             <h4 className="footerHeading">Properties</h4>
             <Link href="/listings/granary-midway" className="footerLink">
-              Hygge House
+              Granary
             </Link>
             <Link href="/listings/daystar-deer-valley" className="footerLink">
               Daystar
@@ -25,7 +25,7 @@ export default function Footer() {
               The Lowell
             </Link>
             <Link href="/listings/house-midway" className="footerLink">
-              Midway House
+              Hygge House
             </Link>
             <Link href="/listings/powder-room" className="footerLink">
               Powder Room
