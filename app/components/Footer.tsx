@@ -19,18 +19,17 @@ export default function Footer() {
               Hygge House
             </Link>
             <Link href="/listings/daystar-deer-valley" className="footerLink">
-              Daystar 
+              Daystar
             </Link>
             <Link href="/listings/lowell-302" className="footerLink">
-              The Lowell 
+              The Lowell
             </Link>
             <Link href="/listings/heber-valley-house" className="footerLink">
               Midway House
             </Link>
             <Link href="/listings/powder-room" className="footerLink">
-              Powder Room 
+              Powder Room
             </Link>
-          
           </div>
 
           <div className="footerCol">
@@ -39,8 +38,7 @@ export default function Footer() {
             <Link href="/property-management" className="footerLink">
               Property Management
             </Link>
-            
-            
+
             <Link href="/company" className="footerLink">
               Company Information
             </Link>
@@ -68,6 +66,9 @@ export default function Footer() {
           <p className="footerCopy">
             © 2024 Roamstead Collective. All rights reserved.
           </p>
+
+          {/* Legal links hidden until pages are built */}
+          {/*
           <div className="footerLegal">
             <Link href="/terms" className="footerLegalLink">
               Terms of Service
@@ -76,6 +77,7 @@ export default function Footer() {
               Privacy Policy
             </Link>
           </div>
+          */}
         </div>
       </div>
     </footer>
