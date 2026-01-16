@@ -329,7 +329,11 @@ function IntegratedOfferingSection() {
     {
       icon: ICONS.thirdSpaces,
       title: "Third Spaces for Local Members and Guests",
-      lines: ["Cafe & Coffee Bar", "Co-Work + Gathering Rooms", "Health & Wellness Amenities"],
+      lines: [
+        "Cafe & Coffee Bar",
+        "Co-Work + Gathering Rooms",
+        "Health & Wellness Amenities",
+      ],
     },
     {
       icon: ICONS.shortMed,
@@ -339,7 +343,11 @@ function IntegratedOfferingSection() {
     {
       icon: ICONS.experience,
       title: "Experience-Driven Community Events",
-      lines: ["Group Rides & Volunteer Days", "Mountain Advancement Series", "Equipment Maintenance 101"],
+      lines: [
+        "Group Rides & Volunteer Days",
+        "Mountain Advancement Series",
+        "Equipment Maintenance 101",
+      ],
     },
   ];
 
@@ -347,6 +355,21 @@ function IntegratedOfferingSection() {
     <section className="mk-wrap">
       <div className="mk-section mk-sectionAlt">
         <h2 className="mk-h2Center">Uniting Mountain Living with Modern Hospitality</h2>
+
+        {/* ✅ Added/updated subtext to be easier to read */}
+        <p
+          style={{
+            textAlign: "center",
+            color: "rgba(255,255,255,0.72)",
+            maxWidth: "780px",
+            margin: "0 auto 22px",
+            lineHeight: "1.75",
+            fontSize: "15px",
+          }}
+        >
+          Uniting mountain living with modern hospitality—designed for locals,
+          members, and guests who want more than a place to sleep.
+        </p>
 
         <div className="ioGrid">
           {CARDS.map((c) => (
@@ -390,7 +413,6 @@ function IntegratedOfferingSection() {
             box-shadow: var(--shadow);
           }
 
-          /* Icon "tile" */
           .ioIcon {
             width: 64px;
             height: 64px;
@@ -400,18 +422,16 @@ function IntegratedOfferingSection() {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.14);
             box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-            overflow: hidden; /* clips the image corners */
+            overflow: hidden;
           }
 
-          /* IMPORTANT: round the image itself too (helps when PNG has its own white square) */
           :global(.ioIconImg) {
-            object-fit: cover; /* makes the icon fill the tile better */
-            border-radius: 18px; /* rounds the PNG itself */
-            transform: scale(1.02); /* tiny scale to remove 1px edge gaps */
+            object-fit: cover;
+            border-radius: 18px;
+            transform: scale(1.02);
             opacity: 0.98;
           }
 
-          /* subtle inner ring so the icon blends cleaner on dark */
           .ioIcon::after {
             content: "";
             position: absolute;
@@ -430,9 +450,11 @@ function IntegratedOfferingSection() {
             font-size: 18px;
           }
 
+          /* ✅ Added margin-top to drop body text slightly for better alignment */
           .ioBody {
             display: grid;
             gap: 6px;
+            margin-top: 6px;
           }
 
           .ioLine {
@@ -455,7 +477,6 @@ function IntegratedOfferingSection() {
     </section>
   );
 }
-
 
 function AdventureSection() {
   return (
