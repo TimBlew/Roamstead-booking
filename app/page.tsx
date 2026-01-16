@@ -86,7 +86,7 @@ function HeroSection() {
             Book your stay
           </a>
           <a className="button linkButton" href="#experiences">
-            Explore experiences
+            Explore Heber Valley
           </a>
         </div>
       </div>
@@ -188,7 +188,7 @@ function PropertiesSection() {
     <section className="section" id="properties">
       <div className="container">
         <h2 className="sectionTitle">Homes for Those Who Roam</h2>
-        <p className="sectionCopy">Browse our stays and book directly.</p>
+        <p className="sectionCopy">Book directly to get the best prices!</p>
 
         <div className="propertyCarousel">
           {/* Left arrow — desktop only */}
