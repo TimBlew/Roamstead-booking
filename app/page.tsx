@@ -117,7 +117,6 @@ function PropertiesSection() {
     const rowStyle = window.getComputedStyle(row);
     const padLeft = parseFloat(rowStyle.paddingLeft || "0") || 0;
 
-    // "content edge" inside the scroller
     const target = row.scrollLeft + padLeft;
 
     let bestIdx = 0;
@@ -148,7 +147,6 @@ function PropertiesSection() {
     const maxLeft = row.scrollWidth - row.clientWidth;
     const nextLeft = Math.max(0, Math.min(desiredLeft, maxLeft));
 
-    // Temporarily disable snapping during programmatic scroll to prevent jumpiness
     const prevSnap = row.style.scrollSnapType || "";
     row.style.scrollSnapType = "none";
 
@@ -165,7 +163,6 @@ function PropertiesSection() {
     }, 380);
   };
 
-  // Keep activeIndex synced to scroll position (more reliable than IntersectionObserver for horizontal snap)
   useEffect(() => {
     const row = rowRef.current;
     if (!row) return;
@@ -195,7 +192,6 @@ function PropertiesSection() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ✅ Mobile dots styles
   const dotsWrapStyle = useMemo<React.CSSProperties>(
     () => ({
       display: "flex",
@@ -240,7 +236,6 @@ function PropertiesSection() {
         <p className="sectionCopy">Book directly to get the best prices!</p>
 
         <div className="propertyCarousel">
-          {/* Left arrow — desktop only */}
           {!isMobile && (
             <button
               className="carouselArrow left"
@@ -287,7 +282,6 @@ function PropertiesSection() {
             ))}
           </div>
 
-          {/* Right arrow — desktop only */}
           {!isMobile && (
             <button
               className="carouselArrow right"
@@ -302,7 +296,6 @@ function PropertiesSection() {
           )}
         </div>
 
-        {/* ✅ Dots — mobile only */}
         {isMobile && (
           <div style={dotsWrapStyle} aria-label="Property carousel pagination">
             {PROPERTIES.map((_, i) => (
@@ -325,94 +318,144 @@ function PropertiesSection() {
   );
 }
 
-function IntroSection() {
-  return (
-    <section className="mk-wrap">
-      <div className="mk-section">
-        <div className="mk-grid2">
-          <div>
-            <h2 className="mk-h2">A Home for Those Who Roam</h2>
-            <p className="mk-p">
-              Roamstead is reimagining what mountain hospitality can be. We&apos;re
-              creating integrated spaces where travelers can work, play, connect,
-              and truly experience mountain living—all while contributing to local
-              communities.
-            </p>
-            <p className="mk-p">
-              Our properties blend traditional vacation rentals with co-working
-              spaces, cafes, wellness amenities, and community programming.
-            </p>
-          </div>
+function IntegratedOfferingSection() {
+  const ICONS = {
+    thirdSpaces: "/assets/third-spaces-icon.png",
+    shortMed: "/assets/short-med-term-icon.png",
+    experience: "/assets/experience-driven-icon.png",
+  };
 
-          <div className="mk-cardImg">
-            <Image
-              src="/roamstead/collective.png"
-              alt="Roamstead Collective"
-              width={1200}
-              height={675}
-              className="mk-img"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+  const CARDS = [
+    {
+      icon: ICONS.thirdSpaces,
+      title: "Third Spaces for Local Members and Guests",
+      lines: ["Cafe & Coffee Bar", "Co-Work + Gathering Rooms", "Health & Wellness Amenities"],
+    },
+    {
+      icon: ICONS.shortMed,
+      title: "Short & Medium Term Rentals",
+      lines: ["Lifestyle forward stays", "Built for the Modern Traveler"],
+    },
+    {
+      icon: ICONS.experience,
+      title: "Experience-Driven Community Events",
+      lines: ["Group Rides & Volunteer Days", "Mountain Advancement Series", "Equipment Maintenance 101"],
+    },
+  ];
 
-function CollectiveSection() {
   return (
     <section className="mk-wrap">
       <div className="mk-section mk-sectionAlt">
-        <h2 className="mk-h2Center">Built for the modern traveler</h2>
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--muted)",
-            maxWidth: "680px",
-            margin: "0 auto 28px",
-            lineHeight: "1.6",
-          }}
-        >
-          The Roamstead Collective integrates multiple experiences into cohesive
-          mountain hospitality—designed for remote workers, adventure seekers, and
-          community-minded travelers.
-        </p>
+        <h2 className="mk-h2Center">Uniting Mountain Living with Modern Hospitality</h2>
 
-        <div className="mk-cards">
-          <div className="mk-card">
-            <h3 className="mk-h3">Co-work + gathering</h3>
-            <p className="mk-pSm">
-              Work-friendly rooms and shared spaces designed for focus and
-              connection.
-            </p>
-          </div>
+        <div className="ioGrid">
+          {CARDS.map((c) => (
+            <div key={c.title} className="mk-card ioCard">
+              <div className="ioIcon" aria-hidden="true">
+                <Image
+                  src={c.icon}
+                  alt=""
+                  fill
+                  sizes="64px"
+                  className="ioIconImg"
+                />
+              </div>
 
-          <div className="mk-card">
-            <h3 className="mk-h3">Cafe + coffee bar</h3>
-            <p className="mk-pSm">
-              A comfortable third space for locals and guests to fuel up and hang
-              out.
-            </p>
-          </div>
+              <h3 className="ioTitle">{c.title}</h3>
 
-          <div className="mk-card">
-            <h3 className="mk-h3">Wellness + recovery</h3>
-            <p className="mk-pSm">
-              Health-forward amenities to reset after big days in the mountains.
-            </p>
-          </div>
-
-          <div className="mk-card">
-            <h3 className="mk-h3">Community events</h3>
-            <p className="mk-pSm">
-              Experience-driven meetups, rides, and local partnerships.
-            </p>
-          </div>
+              <div className="ioBody">
+                {c.lines.map((line) => (
+                  <div key={line} className="ioLine">
+                    {line}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
+
+        <style jsx>{`
+          .ioGrid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 6px;
+          }
+
+          .ioCard {
+            padding: 22px 18px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.26);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            box-shadow: var(--shadow);
+          }
+
+          /* Icon "tile" */
+          .ioIcon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 14px;
+            position: relative;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+            overflow: hidden; /* clips the image corners */
+          }
+
+          /* IMPORTANT: round the image itself too (helps when PNG has its own white square) */
+          :global(.ioIconImg) {
+            object-fit: cover; /* makes the icon fill the tile better */
+            border-radius: 18px; /* rounds the PNG itself */
+            transform: scale(1.02); /* tiny scale to remove 1px edge gaps */
+            opacity: 0.98;
+          }
+
+          /* subtle inner ring so the icon blends cleaner on dark */
+          .ioIcon::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+            pointer-events: none;
+          }
+
+          .ioTitle {
+            margin: 0 0 10px;
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            font-size: 18px;
+          }
+
+          .ioBody {
+            display: grid;
+            gap: 6px;
+          }
+
+          .ioLine {
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 14px;
+            line-height: 1.5;
+          }
+
+          @media (max-width: 900px) {
+            .ioGrid {
+              grid-template-columns: 1fr;
+              gap: 12px;
+            }
+            .ioCard {
+              padding: 20px 16px 18px;
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
 }
+
 
 function AdventureSection() {
   return (
@@ -455,8 +498,7 @@ export default function Page() {
     <main>
       <HeroSection />
       <PropertiesSection />
-      <IntroSection />
-      <CollectiveSection />
+      <IntegratedOfferingSection />
       <AdventureSection />
 
       <section className="section" id="book">
