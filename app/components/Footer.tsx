@@ -50,16 +50,16 @@ export default function Footer() {
           <div className="footerCol">
             <h4 className="footerHeading">Contact</h4>
             <a
-              href="mailto:hello@roamstead-co.com"
+              href="mailto:chris@roamstead-co.com"
               className="footerLink"
             >
-              info@roamstead-co.com
+              chris@roamstead-co.com
             </a>
             <p
               className="footerText"
               style={{ marginTop: "12px", fontSize: "12px" }}
             >
-              Heber Valley, Utah
+              (435) 243-5670
             </p>
           </div>
         </div>
