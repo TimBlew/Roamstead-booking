@@ -440,6 +440,7 @@ ul,ol{ padding-left:18px; }
   overflow:visible;
 }
 
+
 /* ============================
    HOMEPAGE: Hostaway calendar layout fix
    Removes leftover "right panel" space from Hostaway DOM
@@ -453,7 +454,7 @@ ul,ol{ padding-left:18px; }
   background:transparent;
 }
 
-/* Make the injected container fill available width, but don't force full-bleed UI */
+/* Make the injected container fill available width (removes phantom side space) */
 .bookingHome #hostaway-calendar-widget [class*="styled__WidgetContainer"]{
   width:100% !important;
   max-width:100% !important;
@@ -462,18 +463,20 @@ ul,ol{ padding-left:18px; }
   box-sizing:border-box !important;
 }
 
-/* ✅ Recreate a pleasant “content column” (prevents stretched look) */
+/* ✅ Content column: centered, tighter */
 .bookingHome #hostaway-calendar-widget [class*="styled__Wrapper"]{
-  width:min(920px, 100%) !important;
-  max-width:100% !important;
+  width:100% !important;
+  max-width:820px !important;
   margin:0 auto !important;
-  padding:24px !important;               /* comfortable breathing room */
+
+  padding:12px !important;     /* tighter */
+  gap:10px !important;
+
   box-sizing:border-box !important;
 
   display:flex !important;
   flex-direction:column !important;
   align-items:stretch !important;
-  gap:12px !important;
 }
 
 /* Ensure calendars section uses full width of the content column */
@@ -482,7 +485,7 @@ ul,ol{ padding-left:18px; }
   max-width:100% !important;
 }
 
-/* Bottom area: center + stack */
+/* Bottom area: center */
 .bookingHome #hostaway-calendar-widget [class*="styled__Bottom"]{
   width:100% !important;
   max-width:100% !important;
@@ -492,19 +495,19 @@ ul,ol{ padding-left:18px; }
   align-items:center !important;
   justify-content:center !important;
   text-align:center !important;
-  gap:12px !important;
+  gap:10px !important;
 }
 
-/* Make each bottom-row child not create a phantom right column */
+/* Prevent phantom "right column" inside the bottom area */
 .bookingHome #hostaway-calendar-widget [class*="styled__Bottom"] > *{
   width:100% !important;
   max-width:100% !important;
 }
 
-/* Buttons: look like buttons (not full-bleed bars) */
+/* Buttons: keep them as buttons (not full-width bars) */
 .bookingHome #hostaway-calendar-widget button{
   width:auto !important;
-  max-width:520px !important;            /* keeps them from becoming huge */
+  max-width:520px !important;
 }
 
 /* If Hostaway uses a buttons wrapper, center it */
@@ -522,6 +525,23 @@ ul,ol{ padding-left:18px; }
   grid-template-columns:1fr !important;
 }
 
+/* ============================
+   Booking card spacing (homepage only)
+   ============================ */
+
+.bookingHome .bookingTopBar{
+  padding:10px 14px !important;
+}
+
+.bookingHome .bookingGrid{
+  padding:8px 14px 10px !important;
+  gap:10px !important;
+}
+
+.bookingHome .bookingHint{
+  padding:0 14px 10px !important;
+  margin-top:-4px !important;
+}
 
 
 .mk-wrap{ width:100%; }
