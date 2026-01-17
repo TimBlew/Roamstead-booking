@@ -16,47 +16,73 @@ const SCRIPT_SRC = "https://d2q3n06xhbi0am.cloudfront.net/calendar.js";
 const HOSTAWAY_BASE_URL = "https://roamstead_ventures.holidayfuture.com/";
 const CONTAINER_ID = "hostaway-calendar-widget";
 
-// tweak this if needed. 2-month usually needs ~700px+
+// Your breakpoint for 2 months
 const TWO_MONTH_MIN_WIDTH = 720;
+
+// Allow layout to settle before first init
+const SETTLE_MS = 150;
 
 export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWidgetProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const [months, setMonths] = useState(1);
 
-  // 1) Decide months based on container width (ResizeObserver)
+  const [months, setMonths] = useState(1);
+  const [ready, setReady] = useState(false);
+
   useEffect(() => {
     if (!wrapperRef.current) return;
 
     const el = wrapperRef.current;
 
+    const measure = () => el.getBoundingClientRect().width || 0;
+
+    let settleTimer: number | null = null;
+
     const update = () => {
-      const w = el.clientWidth || 0;
+      const w = measure();
       const next = w >= TWO_MONTH_MIN_WIDTH ? 2 : 1;
       setMonths((prev) => (prev === next ? prev : next));
     };
 
+    // measure now + next frames (catches injection/layout shift)
     update();
+    requestAnimationFrame(() => {
+      update();
+      requestAnimationFrame(() => {
+        update();
+        if (settleTimer) window.clearTimeout(settleTimer);
+        settleTimer = window.setTimeout(() => setReady(true), SETTLE_MS);
+      });
+    });
 
-    const ro = new ResizeObserver(() => update());
+    const ro = new ResizeObserver(() => {
+      update();
+      if (!ready) {
+        if (settleTimer) window.clearTimeout(settleTimer);
+        settleTimer = window.setTimeout(() => setReady(true), SETTLE_MS);
+      }
+    });
+
     ro.observe(el);
 
-    return () => ro.disconnect();
+    return () => {
+      ro.disconnect();
+      if (settleTimer) window.clearTimeout(settleTimer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // 2) Load + init widget whenever listingId OR months changes
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (!ready) return;
 
     const container = document.getElementById(CONTAINER_ID);
     if (container) container.innerHTML = "";
 
-    // Remove any existing Hostaway scripts so we get a clean re-init
-    const oldScripts = Array.from(
-      document.querySelectorAll(`script[src^="${SCRIPT_SRC}"]`)
-    );
+    // Remove old scripts for clean re-init
+    const oldScripts = Array.from(document.querySelectorAll(`script[src^="${SCRIPT_SRC}"]`));
     oldScripts.forEach((s) => s.parentNode?.removeChild(s));
 
-    // Remove global function to avoid cached internal state
+    // Clear global to avoid cached state
     try {
       delete (window as any).hostawayCalendarWidget;
     } catch {
@@ -87,9 +113,8 @@ export default function HostawayCalendarWidget({ listingId }: HostawayCalendarWi
       const c = document.getElementById(CONTAINER_ID);
       if (c) c.innerHTML = "";
     };
-  }, [listingId, months]);
+  }, [listingId, months, ready]);
 
-  // Wrapper gives us a reliable width for ResizeObserver
   return (
     <div ref={wrapperRef} style={{ width: "100%" }}>
       <div id={CONTAINER_ID} />
