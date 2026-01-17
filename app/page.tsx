@@ -46,6 +46,15 @@ const PROPERTIES = [
     image: "/listings/powder-room/bedroom-01.jpg",
     available: true,
   },
+  {
+    slug: "senator",
+    title: "The Senator",
+    location: "Heber City, UT",
+    meta: "Historic stay • Boutique B&B • Walkable downtown",
+    image: "/listings/senator/exterior-01.jpg",
+    available: true,
+    externalUrl: "https://hebersenatorbedandbreakfast.com/",
+  },
 ];
 
 /* ----------------------------- WAITLIST MODAL ----------------------------- */
@@ -77,7 +86,12 @@ function WaitlistModal({
   if (!open) return null;
 
   return (
-    <div className="wlOverlay" role="dialog" aria-modal="true" aria-label="Join waitlist">
+    <div
+      className="wlOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Join waitlist"
+    >
       {/* Click outside to close */}
       <button className="wlBackdrop" onClick={onClose} aria-label="Close" />
 
@@ -444,36 +458,68 @@ function PropertiesSection() {
           )}
 
           <div className="propertyRow" id="propertyRow" ref={rowRef}>
-            {PROPERTIES.map((p, i) => (
-              <Link
-                key={p.slug}
-                href={`/listings/${p.slug}`}
-                className="propertyCard"
-                data-index={i}
-                ref={(el) => {
-                  if (el) cardsRef.current[i] = el;
-                }}
-              >
-                <div className="propertyImage">
-                  <Image
-                    src={p.image}
-                    alt={p.title}
-                    fill
-                    className="propertyImg"
-                    sizes="(max-width: 900px) 82vw, 420px"
-                  />
-                </div>
+            {PROPERTIES.map((p, i) => {
+              const cardContent = (
+                <>
+                  <div className="propertyImage">
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      fill
+                      className="propertyImg"
+                      sizes="(max-width: 900px) 82vw, 420px"
+                    />
+                  </div>
 
-                <div className="propertyBody">
-                  <h3 className="propertyTitle">{p.title}</h3>
-                  <p className="propertyLocation">{p.location}</p>
-                  <p className="propertyMeta">{p.meta}</p>
-                  <span className="propertyCta">
-                    {p.available ? "View details →" : "Learn more →"}
-                  </span>
-                </div>
-              </Link>
-            ))}
+                  <div className="propertyBody">
+                    <h3 className="propertyTitle">{p.title}</h3>
+                    <p className="propertyLocation">{p.location}</p>
+                    <p className="propertyMeta">{p.meta}</p>
+                    <span className="propertyCta">
+                      {p.externalUrl
+                        ? "Visit site →"
+                        : p.available
+                        ? "View details →"
+                        : "Learn more →"}
+                    </span>
+                  </div>
+                </>
+              );
+
+              // ✅ External link card (Senator)
+              if (p.externalUrl) {
+                return (
+                  <a
+                    key={p.slug}
+                    href={p.externalUrl}
+                    className="propertyCard"
+                    data-index={i}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ref={(el) => {
+                      if (el) cardsRef.current[i] = el;
+                    }}
+                  >
+                    {cardContent}
+                  </a>
+                );
+              }
+
+              // ✅ Internal link card (all others)
+              return (
+                <Link
+                  key={p.slug}
+                  href={`/listings/${p.slug}`}
+                  className="propertyCard"
+                  data-index={i}
+                  ref={(el) => {
+                    if (el) cardsRef.current[i] = el;
+                  }}
+                >
+                  {cardContent}
+                </Link>
+              );
+            })}
           </div>
 
           {!isMobile && (

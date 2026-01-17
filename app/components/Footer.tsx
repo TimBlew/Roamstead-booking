@@ -30,6 +30,9 @@ export default function Footer() {
             <Link href="/listings/powder-room" className="footerLink">
               Powder Room
             </Link>
+            <Link href="https://hebersenatorbedandbreakfast.com/" className="footerLink">
+              The Senator
+            </Link>
           </div>
 
           <div className="footerCol">
