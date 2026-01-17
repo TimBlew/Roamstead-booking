@@ -48,6 +48,200 @@ const PROPERTIES = [
   },
 ];
 
+/* ----------------------------- WAITLIST MODAL ----------------------------- */
+
+function WaitlistModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div className="wlOverlay" role="dialog" aria-modal="true" aria-label="Join waitlist">
+      {/* Click outside to close */}
+      <button className="wlBackdrop" onClick={onClose} aria-label="Close" />
+
+      <div className="wlModal">
+        <div className="wlHeader">
+          <h3 className="wlTitle">Join Member’s Waitlist</h3>
+          <button className="wlClose" onClick={onClose} aria-label="Close">
+            ✕
+          </button>
+        </div>
+
+        <p className="wlCopy">
+          Be the first to hear about member openings, events, and new properties.
+        </p>
+
+        <form
+          action="https://formspree.io/f/xykkkzvj"
+          method="POST"
+          className="wlForm"
+        >
+          <input type="hidden" name="source" value="homepage_waitlist_modal" />
+
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Email address"
+            className="wlInput"
+          />
+
+          <button type="submit" className="wlSubmit">
+            Join waitlist
+          </button>
+        </form>
+
+        <p className="wlFineprint">No spam. Just meaningful updates.</p>
+      </div>
+
+      <style jsx>{`
+        .wlOverlay {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: grid;
+          place-items: center;
+          padding: 18px;
+        }
+
+        .wlBackdrop {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.65);
+          border: 0;
+          cursor: pointer;
+        }
+
+        .wlModal {
+          position: relative;
+          width: min(520px, 92vw);
+          border-radius: 18px;
+          padding: 18px;
+          background: rgba(15, 16, 18, 0.92);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          box-shadow: 0 22px 70px rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(14px);
+        }
+
+        .wlHeader {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          margin-bottom: 6px;
+        }
+
+        .wlTitle {
+          margin: 0;
+          font-size: 18px;
+          font-weight: 700;
+          color: rgba(255, 255, 255, 0.92);
+          letter-spacing: -0.01em;
+        }
+
+        .wlClose {
+          width: 36px;
+          height: 36px;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          background: rgba(255, 255, 255, 0.06);
+          color: rgba(255, 255, 255, 0.85);
+          cursor: pointer;
+        }
+
+        .wlCopy {
+          margin: 0 0 14px;
+          font-size: 14px;
+          line-height: 1.45;
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        .wlForm {
+          display: grid;
+          gap: 10px;
+        }
+
+        .wlInput {
+          height: 44px;
+          padding: 0 12px;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          background: rgba(0, 0, 0, 0.35);
+          color: rgba(255, 255, 255, 0.92);
+          outline: none;
+        }
+
+        .wlInput::placeholder {
+          color: rgba(255, 255, 255, 0.55);
+        }
+
+        .wlSubmit {
+          height: 44px;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          background: rgba(255, 255, 255, 0.92);
+          color: rgba(0, 0, 0, 0.9);
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .wlFineprint {
+          margin: 10px 0 0;
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.55);
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/* ---------------------------- WAITLIST SECTION ---------------------------- */
+
+function WaitlistSection({ onJoin }: { onJoin: () => void }) {
+  return (
+    <section className="section">
+      <div className="container" style={{ textAlign: "center" }}>
+        <h2 className="sectionTitle">Join the Member’s Waitlist</h2>
+        <p
+          className="sectionCopy"
+          style={{ maxWidth: 560, margin: "0 auto 18px" }}
+        >
+          Get early access to memberships, community events, and new Roamstead
+          properties.
+        </p>
+
+        <button type="button" className="button" onClick={onJoin}>
+          Join Member’s Waitlist
+        </button>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------- SECTIONS -------------------------------- */
+
 function HeroSection() {
   return (
     <section className="hero">
@@ -354,10 +548,9 @@ function IntegratedOfferingSection() {
   return (
     <section className="mk-wrap">
       <div className="mk-section mk-sectionAlt">
-        <h2 className="mk-h2Center">Uniting Mountain Living with Modern Hospitality</h2>
-
-      
-     
+        <h2 className="mk-h2Center">
+          Uniting Mountain Living with Modern Hospitality
+        </h2>
 
         <div className="ioGrid">
           {CARDS.map((c) => (
@@ -397,7 +590,7 @@ function IntegratedOfferingSection() {
             padding: 22px 18px 20px;
             text-align: center;
             background: rgba(0, 0, 0, 0.26);
-            border: 1px solid rgba(255, 255, 255, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: var(--shadow);
           }
 
@@ -438,7 +631,6 @@ function IntegratedOfferingSection() {
             font-size: 18px;
           }
 
-          /* ✅ Added margin-top to drop body text slightly for better alignment */
           .ioBody {
             display: grid;
             gap: 6px;
@@ -503,12 +695,21 @@ function AdventureSection() {
 }
 
 export default function Page() {
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+
   return (
     <main>
       <HeroSection />
       <PropertiesSection />
       <IntegratedOfferingSection />
       <AdventureSection />
+
+      {/* ✅ WAITLIST CTA BETWEEN EXPERIENCES AND BOOKING */}
+      <WaitlistSection onJoin={() => setWaitlistOpen(true)} />
+      <WaitlistModal
+        open={waitlistOpen}
+        onClose={() => setWaitlistOpen(false)}
+      />
 
       <section className="section" id="book">
         <div className="container">
