@@ -775,7 +775,8 @@ export default function Page() {
         onClose={() => setWaitlistOpen(false)}
       />
 
-      <section className="section" id="book">
+      <section className="section bookingHome" id="book">
+
         <div className="container">
           <h2 className="sectionTitle">Book your stay</h2>
           <p className="sectionCopy">

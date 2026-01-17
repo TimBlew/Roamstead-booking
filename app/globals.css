@@ -440,12 +440,89 @@ ul,ol{ padding-left:18px; }
   overflow:visible;
 }
 
-#hostaway-calendar-widget iframe{
+/* ============================
+   HOMEPAGE: Hostaway calendar layout fix
+   Removes leftover "right panel" space from Hostaway DOM
+   (scoped so listing pages stay unchanged)
+   ============================ */
+
+.bookingHome #hostaway-calendar-widget{
+  width:100%;
+  max-width:100%;
+  padding:0;
+  background:transparent;
+}
+
+/* Make the injected container fill available width, but don't force full-bleed UI */
+.bookingHome #hostaway-calendar-widget [class*="styled__WidgetContainer"]{
   width:100% !important;
   max-width:100% !important;
-  border:0 !important;
-  display:block;
+  margin:0 !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
 }
+
+/* ✅ Recreate a pleasant “content column” (prevents stretched look) */
+.bookingHome #hostaway-calendar-widget [class*="styled__Wrapper"]{
+  width:min(920px, 100%) !important;
+  max-width:100% !important;
+  margin:0 auto !important;
+  padding:24px !important;               /* comfortable breathing room */
+  box-sizing:border-box !important;
+
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  gap:12px !important;
+}
+
+/* Ensure calendars section uses full width of the content column */
+.bookingHome #hostaway-calendar-widget [class*="styled__Calendars"]{
+  width:100% !important;
+  max-width:100% !important;
+}
+
+/* Bottom area: center + stack */
+.bookingHome #hostaway-calendar-widget [class*="styled__Bottom"]{
+  width:100% !important;
+  max-width:100% !important;
+
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  gap:12px !important;
+}
+
+/* Make each bottom-row child not create a phantom right column */
+.bookingHome #hostaway-calendar-widget [class*="styled__Bottom"] > *{
+  width:100% !important;
+  max-width:100% !important;
+}
+
+/* Buttons: look like buttons (not full-bleed bars) */
+.bookingHome #hostaway-calendar-widget button{
+  width:auto !important;
+  max-width:520px !important;            /* keeps them from becoming huge */
+}
+
+/* If Hostaway uses a buttons wrapper, center it */
+.bookingHome #hostaway-calendar-widget [class*="styled__Buttons"]{
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:12px !important;
+  flex-wrap:wrap !important;
+  width:100% !important;
+}
+
+/* Kill any leftover 2-column grid rules Hostaway injects */
+.bookingHome #hostaway-calendar-widget [style*="grid-template-columns"]{
+  grid-template-columns:1fr !important;
+}
+
+
 
 .mk-wrap{ width:100%; }
 
@@ -1071,3 +1148,4 @@ ul,ol{ padding-left:18px; }
     gap: 8px;
   }
 }
+

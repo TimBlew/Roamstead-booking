@@ -38,7 +38,7 @@ export default function BookingSection({ defaultListingId }: BookingSectionProps
   const selected = LISTINGS.find((l) => l.id === selectedId) ?? LISTINGS[0];
 
   return (
-    <section id="book">
+    <div className="bookingSection">
       <div className="card">
         <div className="bookingTopBar">
           <div className="bookingPicker">
@@ -72,9 +72,6 @@ export default function BookingSection({ defaultListingId }: BookingSectionProps
           Currently viewing: <strong>{selected.name}</strong>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
-
-
-
