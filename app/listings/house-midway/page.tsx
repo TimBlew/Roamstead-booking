@@ -208,7 +208,8 @@ export default function Page() {
                 </div>
 
                 <div className="bookingGrid">
-                  <BookingSection />
+                  {/* ✅ Force the calendar to "House (Midway)" */}
+                  <BookingSection defaultListingId={455635} key="house-midway-455635" />
                   <div className="bookingHint">
                     Cancellation policies vary by channel (Airbnb/VRBO/Booking/Direct).
                   </div>
