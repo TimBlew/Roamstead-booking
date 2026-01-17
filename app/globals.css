@@ -151,6 +151,21 @@ ul,ol{ padding-left:18px; }
   border-color:rgba(255,255,255,0.20);
 }
 
+.waitlistButton {
+  padding: 14px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  min-width: 240px;
+}
+
+@media (max-width: 520px) {
+  .waitlistButton {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
 .linkButton{
   background:transparent;
   border-color:transparent;

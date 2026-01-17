@@ -240,8 +240,8 @@ function WaitlistSection({ onJoin }: { onJoin: () => void }) {
   return (
     <section className="section">
       <div className="container" style={{ textAlign: "center" }}>
-        <h2 className="sectionTitle">Join the Member Waitlist</h2>
-        <button type="button" className="button" onClick={onJoin}>
+        
+        <button type="button" className="button waitlistButton" onClick={onJoin}>
           Join the Member Waitlist
         </button>
       </div>
