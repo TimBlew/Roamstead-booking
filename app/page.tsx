@@ -103,14 +103,28 @@ function WaitlistModal({
           </button>
         </div>
 
-        <ul className="wlList">
-          <li>
-            <em>Secret</em> Co-Working Space in the Valley
-          </li>
-          <li>Ride shares to Cottonwood Resorts from Heber</li>
-          <li>Member-only room rates</li>
-          <li>Community events</li>
-        </ul>
+        <div className="wlFeatures">
+          <div className="wlFeature">
+            <span className="wlDot" aria-hidden="true" />
+            <span><em>Secret</em> Co-Working Space in the Valley</span>
+          </div>
+
+          <div className="wlFeature">
+            <span className="wlDot" aria-hidden="true" />
+            <span>Ride shares to Cottonwood Resorts from Heber</span>
+          </div>
+
+          <div className="wlFeature">
+            <span className="wlDot" aria-hidden="true" />
+            <span>Member-only room rates</span>
+          </div>
+
+          <div className="wlFeature">
+            <span className="wlDot" aria-hidden="true" />
+            <span>Community events</span>
+          </div>
+        </div>
+
 
         <p className="wlCopy">Sign up to get priority updates</p>
 
@@ -191,13 +205,31 @@ function WaitlistModal({
           flex-shrink: 0;
         }
 
-        .wlList {
-          margin: 0 0 14px;
-          padding-left: 18px;
-          color: rgba(255, 255, 255, 0.8);
-          font-size: 14px;
-          line-height: 1.5;
+        .wlFeatures{
+          display: grid;
+          gap: 10px;
+          margin: 6px 0 14px;
         }
+
+        .wlFeature{
+          display: grid;
+          grid-template-columns: 10px 1fr;
+          gap: 10px;
+          align-items: start;
+          color: rgba(255, 255, 255, 0.82);
+          font-size: 14px;
+          line-height: 1.45;
+        }
+
+        .wlDot{
+          width: 7px;
+          height: 7px;
+          border-radius: 999px;
+          margin-top: 7px;
+          background: rgba(255,255,255,0.70);
+          box-shadow: 0 0 0 3px rgba(255,255,255,0.07);
+        }
+
 
         .wlCopy {
           margin: 0 0 12px;
