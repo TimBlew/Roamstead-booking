@@ -194,6 +194,16 @@ ul,ol{ padding-left:18px; }
   margin-bottom:8px;
 }
 
+.sectionTitleLink{
+  text-decoration:none;
+  color:inherit;
+  display:inline-block;
+}
+.sectionTitleLink:hover .sectionTitle{
+  text-decoration:underline;
+  text-underline-offset:6px;
+}
+
 .sectionCopy{
   color:var(--muted);
   line-height:1.6;

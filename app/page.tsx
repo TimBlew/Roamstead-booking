@@ -467,7 +467,10 @@ function PropertiesSection() {
   return (
     <section className="section" id="properties">
       <div className="container">
-        <h2 className="sectionTitle">Homes for Those Who Roam</h2>
+        <Link href="/properties" className="sectionTitleLink">
+          <h2 className="sectionTitle">Homes for Those Who Roam</h2>
+        </Link>
+
         <p className="sectionCopy">Book directly to get the best prices!</p>
 
         <div className="propertyCarousel">
