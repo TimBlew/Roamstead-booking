@@ -630,8 +630,8 @@ function IntegratedOfferingSection() {
                 <Image
                   src={c.icon}
                   alt=""
-                  fill
-                  sizes="64px"
+                  width={64}
+                  height={64}
                   className="ioIconImg"
                 />
               </div>
@@ -682,6 +682,7 @@ function IntegratedOfferingSection() {
             border-radius: 18px;
             transform: scale(1.02);
             opacity: 0.98;
+            display: block;
           }
 
           .ioTitle {
@@ -776,7 +777,6 @@ export default function Page() {
       />
 
       <section className="section bookingHome" id="book">
-
         <div className="container">
           <h2 className="sectionTitle">Book your stay</h2>
           <p className="sectionCopy">
