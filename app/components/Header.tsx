@@ -22,7 +22,7 @@ export default function Header() {
         </Link>
 
         <nav className="desktopNav">
-          <Link href="/properties" className="navLink">
+          <Link href="/#properties" className="navLink">
             Our Properties
           </Link>
           {/* <Link href="/the-collective" className="navLink">The Collective</Link> */}
