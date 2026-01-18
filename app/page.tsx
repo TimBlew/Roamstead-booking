@@ -467,9 +467,7 @@ function PropertiesSection() {
   return (
     <section className="section" id="properties">
       <div className="container">
-        <Link href="/properties" className="sectionTitleLink">
-          <h2 className="sectionTitle">Homes for Those Who Roam</h2>
-        </Link>
+        <h2 className="sectionTitle">Homes for Those Who Roam</h2>
 
         <p className="sectionCopy">Book directly to get the best prices!</p>
 
